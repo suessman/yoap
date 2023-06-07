@@ -1,0 +1,98 @@
+<head><link href=".././css/styles.css" rel="stylesheet"></head>  <header class="fixed-top header-main event">
+    <section class="container-fluid top-nav end">
+      <!-- 지역선택 -->
+      <a href="#;" class="area" data-toggle="modal" data-target="#areaChange">서초동</a>
+      <a href="/story/searchStory.html" class="icon icon-search icon-ml">
+        <span class="sr-only">검색</span>
+      </a>
+    </section>
+
+    <!-- 탭 -->
+    <section class="container-fluid px-0 tab">
+      <ul class="tab-list nav nav-tabs" id="eventTab" role="tablist">
+        <li>
+          <a href="#story" class="active" id="story-tab" data-toggle="tab" href="#story" role="tab" aria-controls="story" aria-selected="true">동네이야기</a>
+        </li>
+        <li>
+          <a href="#market" class="" id="market-tab" data-toggle="tab" href="#market" role="tab" aria-controls="market" aria-selected="false">나눔장터</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 카테고리 선택 -->
+    <section class="container-fluid top-category">
+      <label class="badge-checkbox" for="checkAll">
+        <input type="checkbox" value="1" id="checkAll" hidden checked>
+        <span>전체</span>
+      </label>
+      <label class="badge-checkbox" for="item-2">
+        <input type="checkbox" value="2" id="item-2" hidden>
+        <span>요리/제조</span>
+      </label>
+      <label class="badge-checkbox" for="item-3">
+        <input type="checkbox" value="3" id="item-3" hidden>
+        <span>반려동물</span>
+      </label>
+      <label class="badge-checkbox" for="item-4">
+        <input type="checkbox" value="4" id="item-4" hidden>
+        <span>가족/결혼</span>
+      </label>
+      <label class="badge-checkbox" for="item-5">
+        <input type="checkbox" value="5" id="item-5" hidden>
+        <span>자유주제</span>
+      </label>
+      <label class="badge-checkbox" for="item-6">
+        <input type="checkbox" value="6" id="item-6" hidden>
+        <span>정보</span>
+      </label>
+    </section>
+  </header>
+
+  <script>
+    $(function() {
+
+      // 전체 체크시 나머지 체크 해제
+      $(".badge-checkbox #checkAll").on('click', function(){
+        if($(this).prop('checked', true)) {
+          console.log($(this).parent())
+          $(this).parent().siblings('label').children('input').prop('checked', false);
+        }
+      });
+      // 나머지 선택시 전체 체크 해제
+      $(".badge-checkbox :not(#checkAll)").on('click', function(){
+        $("#checkAll").prop('checked', false);
+      });
+
+      //--- Tabs - Following border animation
+      var w = Math.round($(".tab-list li").width());
+      var initPos = $(".tab-list a.active").parent('li').position();
+      $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + initPos.left + 'px;}</style>');
+      
+      // window resize support
+      var resizeTimer;
+      $(window).on('resize', function(e) {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          w = Math.round($(".tab-list li").width());
+          initPos = $(".tab-list a.active").parent('li').position();
+          $("head").find('#append-style').remove();
+          $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + initPos.left + 'px;}</style>');
+        }, 250);
+      });
+      // tab active
+      $(".tab-list li").on('click', function() {
+        var pos = $(this).position();
+        $("head").find('#append-style').remove();
+        $(".tab-list li a").removeClass('active');
+        $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + pos.left + 'px;}</style>');
+        $(this).children('a').addClass('active');
+      });
+
+      // BS tab action
+      $('#eventTab a').on('click', function (event) {
+        event.preventDefault()
+        $(this).tab('show')
+      })
+    })
+  </script>
+<script src="../main.js"></script>

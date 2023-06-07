@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <title>YOAP - 마이페이지 > 설정</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+<!-- favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="/images/favicon.ico">
+
+<script src="/js/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+
+<!-- CSS Bootstrap 4.6.0 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/css/flatpickr.min.css">
+<link rel="stylesheet" href="/css/xpull.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css"> -->
+
+<!-- JS -->
+<!-- Bootstrap 4.6.0 -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- owl carousel -->
+<script src="/js/owl.carousel.min.js"></script>
+<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<!-- Sweetalert -->
+<script src="/js/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- Copy to clipboard -->
+<script src="/js/clipboard.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"  crossorigin="anonymous"></script> -->
+
+<script src="/js/jquery.waitforimages.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/flatpickr.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/ko.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/l10n/ko.min.js"  crossorigin="anonymous"></script> -->
+
+<!-- xpull 끌어서 새로고침  https://github.com/sjovanovic/xpull -->
+<script src="/js/xpull.js"></script>
+
+<link href=".././css/styles.css" rel="stylesheet"></head>
+
+<body>
+
+  <div class="d-flex h-100 flex-column">
+    <header class="fixed-top header-main title">
+      <section class="container-fluid top-nav">
+        <a href="#;" class="btn btn-icon" title="이전으로" onclick="history.back();">
+          <span class="icon icon-left icon-ml back"></span>
+        </a>
+        <h1>설정</h1>
+      </section>
+    </header>
+
+    <main class="d-flex h-100 flex-column ui">
+
+      <section class="container-fluid mypage">
+        <h2 class="heading-sm">알림 설정</h2>
+        <div class="row-bar">
+          <div>
+            <b>채팅 알림</b>
+            <p>채팅 메시지 알림</p>
+          </div>
+          <div class="switch-wrap">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="pushChat">
+              <label class="custom-control-label" for="pushChat"></label>
+            </div>
+          </div>
+        </div>
+        <div class="row-bar">
+          <div>
+            <b>활동 알림</b>
+            <p>댓글, 관심글 알림</p>
+          </div>
+          <div class="switch-wrap">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="pushNote">
+              <label class="custom-control-label" for="pushNote"></label>
+            </div>
+          </div>
+        </div>
+        <div class="row-bar">
+          <div>
+            <b>진동</b>
+          </div>
+          <div class="switch-wrap">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="pushVib">
+              <label class="custom-control-label" for="pushVib"></label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container-fluid mypage">
+        <h2 class="heading-sm">기타</h2>
+        <div class="row-bar">
+          <b>버전 정보 1.1.1</b>
+        </div>
+        <div class="row-bar">
+          <a href="#;" id="logout" class="text-primary">로그아웃</a>
+        </div>
+        <div class="row-bar">
+          <a href="#;" id="withdraw" class="text-primary">탈퇴하기</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <!-- Main Nav -->
+<!-- <footer class="footer footer-nav fixed-bottom">
+  <div class="container h-100">
+    <ul class="d-flex h-100 justify-content-between align-items-center">
+      <li>
+        <a href="/service/home.html" class="icon icon-home active">
+          <span class="sr-only">홈</span>
+        </a>
+      </li>
+      <li>
+        <a href="/event/event.html" class="icon icon-bag">
+          <span class="sr-only">이벤트</span>
+        </a>
+      </li>
+      <li>
+        <a href="/story/storyHome.html" class="icon icon-yoap">
+          <span class="sr-only">우리동네</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/chat/chatHome.html" class="icon icon-chat2">
+          <span class="sr-only">채팅</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/mypage/mypageHome.html" class="icon icon-user">
+          <span class="sr-only">마이페이지</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer> -->
+
+<script>
+  $(function () {
+
+    // 메뉴 on -- 비동
+    $(".footer-nav .icon").on('click', function () {
+      $(".footer-nav .icon").removeClass('active');
+      $(this).addClass('active');
+    })
+  })
+
+</script>
+
+  <script>
+    $(function () {
+
+      // 탈퇴하기 액션
+      $('#withdraw').on('click', function () {
+        swal({
+          title: "탈퇴",
+          text: "탈퇴 하시겠습니까?",
+          // icon: "warning",
+          buttons: true,
+          dangerMode: true,
+          buttons: {
+            cancel: {
+              text: "취소",
+              value: null,
+              visible: true,
+              className: "btn btn-outline-primary btn-fix",
+              closeModal: true,
+            },
+            confirm: {
+              text: "탈퇴하기",
+              value: true,
+              visible: true,
+              className: "btn btn-primary btn-fix",
+              closeModal: true
+            }
+          }
+        })
+      });
+
+      // 로그아웃 액션
+      $('#logout').on('click', function () {
+        swal({
+          title: "로그아웃",
+          text: "로그아웃 하시겠습니까?",
+          // icon: "warning",
+          buttons: true,
+          dangerMode: true,
+          buttons: {
+            cancel: {
+              text: "취소",
+              value: null,
+              visible: true,
+              className: "btn btn-outline-primary btn-fix",
+              closeModal: true,
+            },
+            confirm: {
+              text: "로그아웃",
+              value: true,
+              visible: true,
+              className: "btn btn-primary btn-fix",
+              closeModal: true
+            }
+          }
+        })
+      });
+    })
+  </script>
+<script src="../main.js"></script></body>
+
+</html>

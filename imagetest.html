@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <title>YOAP - 비밀번호 찾기</title>
+    <meta name="description" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+<!-- favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="./images/favicon.ico">
+
+<script src="./js/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+
+<!-- CSS Bootstrap 4.6.0 -->
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/owl.carousel.min.css">
+<link rel="stylesheet" href="./css/owl.theme.default.min.css">
+<link rel="stylesheet" href="./css/flatpickr.min.css">
+<link rel="stylesheet" href="./css/xpull.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist./css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css"> -->
+
+<!-- JS -->
+<!-- Bootstrap 4.6.0 -->
+<script src="./js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist./js/bootstrap.bundle.min.js"></script> -->
+<!-- owl carousel -->
+<script src="./js/owl.carousel.min.js"></script>
+<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<!-- Sweetalert -->
+<script src="./js/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- Copy to clipboard -->
+<script src="./js/clipboard.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"  crossorigin="anonymous"></script> -->
+
+<script src="./js/jquery.waitforimages.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js" crossorigin="anonymous"></script> -->
+
+<script src="./js/flatpickr.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" crossorigin="anonymous"></script> -->
+
+<script src="./js/ko.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/l10n/ko.min.js"  crossorigin="anonymous"></script> -->
+
+<!-- xpull 끌어서 새로고침  https://github.com/sjovanovic/xpull -->
+<script src="./js/xpull.js"></script>
+    <style>
+        .img-body img {
+            display: inline-block;
+            border-radius: 8px;
+            margin-top: 2px;
+        }
+
+        .one-size {
+            width: 100%;
+            height: auto;
+        }
+
+        .two-size {
+            width: 48%;
+            height: auto;
+        }
+
+        .img-body {
+            width: 160px;
+            margin-top: 5rem;
+            overflow: hidden;
+        }
+    </style>
+<link href="../css/styles.css" rel="stylesheet"></head>
+
+<body>
+
+    <!--[if IE]>
+<div class="p-3 bg-light">
+  <div class="container">
+    <p class="mb-0 browserupgrade">
+      You are using an <strong>outdated</strong> browser.
+      Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </p>
+  </div>
+</div>
+<![endif]-->
+
+
+    <div class="d-flex flex-column h-100">
+
+        <header class="header header-back fixed-top">
+            <div class="container">
+                <a href="#" class="btn btn-icon" title="이전으로" onclick="history.back();">
+                    <span class="icon icon-left"></span>
+                </a>
+                <h1>image&#8901;number check</h1>
+            </div>
+        </header>
+
+        <main class="d-flex flex-column h-100">
+            <div class="container">
+                <form action="">
+                    <div class="row">
+                        <div class="form-group col-md mt-5">
+                            <!-- 이미지 갯수에 따라서 넓이 다르게 -->
+                            <div class="img-body">
+                                <img src="./images/yoap_thumb.png" alt="테스트">
+                            </div>
+
+                            <div class="img-body">
+                                <img src="./images/user_photo.png">
+                                <img src="./images/user_photo.png">
+                            </div>
+
+                            <div class="img-body">
+                                <img src="./images/demo_event.jpg" alt="테스트">
+                                <img src="./images/demo_event.jpg" alt="테스트">
+                                <img src="./images/demo_event.jpg" alt="테스트">
+                            </div>
+
+                            <div class="img-body">
+                                <img src="./images/yoap_thumb.png" alt="테스트">
+                                <img src="./images/demo_market.jpg" alt="테스트">
+                                <img src="./images/demo_event.jpg" alt="테스트">
+                                <img src="./images/demo_feed.jpg" alt="테스트">
+                            </div>
+
+
+                            <div class="img-body">
+                                <img src="./images/yoap_thumb.png" alt="테스트">
+                                <img src="./images/demo_market.jpg" alt="테스트">
+                                <img src="./images/demo_event.jpg" alt="테스트">
+                                <img src="./images/demo_feed.jpg" alt="테스트">
+                                <img src="./images/demo_ad.png" alt="테스트">
+                            </div>
+
+                            <div class="img-body">
+                                <img src="./images/demo_ad.png" alt="테스트">
+                                <img src="./images/demo_market.jpg" alt="테스트">
+                                <img src="./images/demo_event.jpg" alt="테스트">
+                                <img src="./images/demo_feed.jpg" alt="테스트">
+                                <img src="./images/demo_ad.png" alt="테스트">
+                                <img src="./images/demo_ad.png" alt="테스트">
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        $(function () {
+            var num = $('.img-body');
+            var numLength = num.length;
+            // console.log(num.find('img'));
+
+            for (let i = 0; i <= numLength; i++) {
+                var thisNum = num[i];
+
+                var numChild = num.eq(i).find('img');
+                var numChildLength = numChild.length;
+                console.log(numChildLength);
+
+                if (numChildLength == 1) {
+                    numChild.addClass('one-size');
+                } else if (numChildLength % 2 == 0) {
+                    //짝수
+                    numChild.addClass('two-size');
+                } else {
+                    //홀수
+                    numChild.addClass('two-size');
+                    numChild.last().addClass('w-100');
+                }
+            }
+        })
+
+    </script>
+<script src="main.js"></script></body>
+
+</html>

@@ -1,0 +1,64 @@
+<head><link href=".././css/styles.css" rel="stylesheet"></head><header class="fixed-top header-main tabbar">
+    <section class="container-fluid top-nav between">
+      <a href="#;" class="btn btn-icon" title="이전으로" onclick="history.back();">
+        <span class="icon icon-left icon-ml back"></span>
+      </a>
+      <h1>즐겨찾기</h1>
+    </section>
+
+    <!-- 탭 -->
+    <section class="container-fluid px-0 tab">
+      <ul class="tab-list nav nav-tabs" id="mypageTab" role="tablist">
+        <li>
+          <a href="#feed" class="active" id="feed-tab" data-toggle="tab" href="#feed" role="tab" aria-controls="feed" aria-selected="true">상점소식</a>
+        </li>
+        <li>
+          <a href="#event" id="event-tab" data-toggle="tab" href="#event" role="tab" aria-controls="event" aria-selected="false">상점이벤트</a>
+        </li>
+        <li>
+          <a href="#product" id="product-tab" data-toggle="tab" href="#product" role="tab" aria-controls="product" aria-selected="false">요앞제품</a>
+        </li>
+        <li>
+          <a href="#market" id="market-tab" data-toggle="tab" href="#market" role="tab" aria-controls="market" aria-selected="false">나눔장터</a>
+        </li>
+      </ul>
+    </section>
+
+  </header>
+
+  <script>
+    $(function() {
+
+      //--- Tabs - Following border animation
+      var w = Math.round($(".tab-list li").width());
+      var initPos = $(".tab-list a.active").parent('li').position();
+      $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + initPos.left + 'px;}</style>');
+      
+      // window resize support
+      var resizeTimer;
+      $(window).on('resize', function(e) {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          w = Math.round($(".tab-list li").width());
+          initPos = $(".tab-list a.active").parent('li').position();
+          $("head").find('#append-style').remove();
+          $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + initPos.left + 'px;}</style>');
+        }, 250);
+      });
+      // tab active
+      $(".tab-list li").on('click', function() {
+        var pos = $(this).position();
+        $("head").find('#append-style').remove();
+        $(".tab-list li a").removeClass('active');
+        $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + pos.left + 'px;}</style>');
+        $(this).children('a').addClass('active');
+      });
+
+      // BS tab action
+      $('#mypageTab a').on('click', function (event) {
+        event.preventDefault()
+        $(this).tab('show')
+      })
+    })
+  </script>
+<script src="../main.js"></script>

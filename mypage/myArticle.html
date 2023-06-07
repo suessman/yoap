@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>YOAP - 내가 쓴 글</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+<!-- favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="/images/favicon.ico">
+
+<script src="/js/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+
+<!-- CSS Bootstrap 4.6.0 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/css/flatpickr.min.css">
+<link rel="stylesheet" href="/css/xpull.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css"> -->
+
+<!-- JS -->
+<!-- Bootstrap 4.6.0 -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- owl carousel -->
+<script src="/js/owl.carousel.min.js"></script>
+<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<!-- Sweetalert -->
+<script src="/js/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- Copy to clipboard -->
+<script src="/js/clipboard.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"  crossorigin="anonymous"></script> -->
+
+<script src="/js/jquery.waitforimages.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/flatpickr.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/ko.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/l10n/ko.min.js"  crossorigin="anonymous"></script> -->
+
+<!-- xpull 끌어서 새로고침  https://github.com/sjovanovic/xpull -->
+<script src="/js/xpull.js"></script>
+
+<link href=".././css/styles.css" rel="stylesheet"></head>
+
+<body>
+
+<!--[if IE]>
+<div class="p-3 bg-light">
+  <div class="container">
+    <p class="mb-0 browserupgrade">
+      You are using an <strong>outdated</strong> browser.
+      Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </p>
+  </div>
+</div>
+<![endif]-->
+
+
+<div class="d-flex flex-column">
+  
+    <header class="fixed-top header-main tabbar">
+    <section class="container-fluid top-nav between">
+      <a href="#;" class="btn btn-icon" title="이전으로" onclick="history.back();">
+        <span class="icon icon-left icon-ml back"></span>
+      </a>
+      <h1>내가 쓴 글</h1>
+    </section>
+
+    <!-- 탭 -->
+    <section class="container-fluid px-0 tab">
+      <ul class="tab-list nav nav-tabs" id="mypageTab" role="tablist">
+        <li>
+          <a href="#feed" class="active" id="feed-tab" data-toggle="tab" href="#feed" role="tab" aria-controls="feed" aria-selected="true">상점소식</a>
+        </li>
+        <li>
+          <a href="#event" id="event-tab" data-toggle="tab" href="#event" role="tab" aria-controls="event" aria-selected="false">상점이벤트</a>
+        </li>
+        <li>
+          <a href="#story" id="story-tab" data-toggle="tab" href="#story" role="tab" aria-controls="story" aria-selected="false">동네이야기</a>
+        </li>
+        <li>
+          <a href="#market" id="market-tab" data-toggle="tab" href="#market" role="tab" aria-controls="market" aria-selected="false">나눔장터</a>
+        </li>
+      </ul>
+    </section>
+
+  </header>
+
+  <script>
+    $(function() {
+
+      //--- Tabs - Following border animation
+      var w = Math.round($(".tab-list li").width());
+      var initPos = $(".tab-list a.active").parent('li').position();
+      $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + initPos.left + 'px;}</style>');
+      
+      // window resize support
+      var resizeTimer;
+      $(window).on('resize', function(e) {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          w = Math.round($(".tab-list li").width());
+          initPos = $(".tab-list a.active").parent('li').position();
+          $("head").find('#append-style').remove();
+          $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + initPos.left + 'px;}</style>');
+        }, 250);
+      });
+      // tab active
+      $(".tab-list li").on('click', function() {
+        var pos = $(this).position();
+        $("head").find('#append-style').remove();
+        $(".tab-list li a").removeClass('active');
+        $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + pos.left + 'px;}</style>');
+        $(this).children('a').addClass('active');
+      });
+
+      // BS tab action
+      $('#mypageTab a').on('click', function (event) {
+        event.preventDefault()
+        $(this).tab('show')
+      })
+    })
+  </script>
+
+
+  <main class="d-flex flex-column ui ui-myarticle">
+
+    <div class="tab-content">
+      <!-- tab - my feed -->
+      <div class="tab-pane fade show active" id="feed" role="tabpanel" aria-labelledby="feed-tab">
+    
+        <section class="container top-total">
+          <span>총 99건</span>
+        </section>
+
+        <!-- item -->
+        <article class="item-feed">
+          <div class="item-head">
+            <a href="/service/shopDetail.html" class="userthumb userthumb-md" style="background-image: url('/images/user_photo.png');"></a>
+            <!-- 인증 상점일 경우, icon-members class 적용 -->
+            <h2 class="icon-members">요앞상회 서초동</h2>
+            <div class="info">
+              <span>00분 전</span>
+            </div>
+            <a href="#;" class="icon icon-dots icon-ml dot-menu"></a>
+            <!-- edit select -->
+            <div class="pop-menu">
+              <ul>
+                <li>
+                  <a href="#;">수정</a>
+                </li>
+                <li>
+                  <a href="#;">삭제</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="item-body">
+            <!-- 사진 있는 아이템 -->
+            <div class="owl-carousel owl-theme">
+              <div class="item">
+                <img src="https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="/images/demo_feed.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="https://www.slrlounge.com/wp-content/uploads/2013/05/suburban-lake-vertical-panorama-bw-900.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="https://i.pinimg.com/originals/0b/ac/f6/0bacf62a4bd456d02d02c6b8a5c98f67.jpg" alt="">
+              </div>
+            </div>
+
+            <!-- 사진 없는 아이템 -->
+            <div class="container-fluid content mt-2">
+              <p class="mb-2">
+                잠깐 들려서 보고가세요 행사중입니다 :)
+              </p>
+              <div class="tags">
+                <a href="#;">#요앞상회</a>
+                <a href="#;">#언제든</a>
+                <a href="#;">#환영</a>
+                <a href="#;">#이벤트</a>
+              </div>
+              <div class="post-date mt-1">
+                <span>2021-00-00</span>
+              </div>
+            </div>
+
+            <div class="container-fluid btns mt-2">
+              <div>
+                <button type="button" class="icon icon-like icon-lg">
+                  <span class="sr-only">좋아요</span>
+                </button>
+                <button type="button" class="icon icon-chat icon-lg" onclick="location.href='/service/feedDetail.html'">
+                  <span class="sr-only">댓글</span>
+                </button>
+                <button type="button" class="icon icon-chat2 icon-lg" onclick="location.href='/chat/chatRoom.html'">
+                  <span class="sr-only">채팅</span>
+                </button>
+              </div>
+              <div>
+                <button type="button" class="icon icon-bookmark icon-lg">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container-fluid nums mt-1">
+              <span>좋아요 1,999</span>
+              <span>댓글 999</span>
+            </div>
+          </div>
+        </article>
+        <!--// item -->
+
+        <!-- item -->
+        <article class="item-feed">
+          <div class="item-head">
+            <a href="/service/shopDetail.html" class="userthumb userthumb-md" style="background-image: url('/images/user_photo.png');"></a>
+            <!-- 인증 상점일 경우, icon-members class 적용 -->
+            <h2>요앞상회 서초동</h2>
+            <div class="info">
+              <span>00분 전</span>
+            </div>
+            <a href="#;" class="icon icon-dots icon-ml dot-menu"></a>
+            <!-- pop select -->
+            <div class="pop-menu">
+              <ul>
+                <li>
+                  <a href="#;">수정</a>
+                </li>
+                <li>
+                  <a href="#;">삭제</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="item-body">
+
+            <!-- 사진 있는 아이템 -->
+            <div class="owl-carousel owl-theme">        
+              <div class="item">
+                <img src="https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="/images/demo_feed.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="https://www.slrlounge.com/wp-content/uploads/2013/05/suburban-lake-vertical-panorama-bw-900.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="https://i.pinimg.com/originals/0b/ac/f6/0bacf62a4bd456d02d02c6b8a5c98f67.jpg" alt="">
+              </div>
+            </div>
+
+            <!-- contents -->
+            <div class="container-fluid content mt-2">
+              <p class="mb-2">
+                잠깐 들려서 보고가세요 행사중입니다 :)
+              </p>
+              <div class="tags">
+                <a href="#;">#요앞상회</a>
+                <a href="#;">#언제든</a>
+                <a href="#;">#환영</a>
+                <a href="#;">#이벤트</a>
+              </div>
+              <div class="post-date mt-1">
+                <span>2021-00-00</span>
+              </div>
+            </div>
+
+            <div class="container-fluid btns mt-2">
+              <div>
+                <button type="button" class="icon icon-like icon-lg">
+                  <span class="sr-only">좋아요</span>
+                </button>
+                <button type="button" class="icon icon-chat icon-lg" onclick="location.href='/service/feedDetail.html'">
+                  <span class="sr-only">댓글</span>
+                </button>
+                <button type="button" class="icon icon-chat2 icon-lg" onclick="location.href='/chat/chatRoom.html'">
+                  <span class="sr-only">채팅</span>
+                </button>
+              </div>
+              <div>
+                <button type="button" class="icon icon-bookmark icon-lg">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container-fluid nums mt-1">
+              <span>좋아요 1,999</span>
+              <span>댓글 999</span>
+            </div>
+          </div>
+        </article>
+        <!--// item -->
+
+        <!-- item -->
+        <article class="item-feed">
+          <div class="item-head">
+            <a href="/service/shopDetail.html" class="userthumb userthumb-md" style="background-image: url('/images/user_photo.png');"></a>
+            <!-- 인증 상점일 경우, icon-members class 적용 -->
+            <h2 class="icon-members">요앞상회 서초동</h2>
+            <div class="info">
+              <span>00분 전</span>
+            </div>
+            <a href="#;" class="icon icon-dots icon-ml dot-menu"></a>
+            <!-- pop select -->
+            <div class="pop-menu">
+              <ul>
+                <li>
+                  <a href="#;">수정</a>
+                </li>
+                <li>
+                  <a href="#;">삭제</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="item-body">
+
+            <!-- contents -->
+            <div class="container-fluid content mt-2">
+              <p class="mb-2">
+                잠깐 들려서 보고가세요 행사중입니다 :)
+              </p>
+              <div class="tags">
+                <a href="#;">#요앞상회</a>
+                <a href="#;">#언제든</a>
+                <a href="#;">#환영</a>
+                <a href="#;">#이벤트</a>
+              </div>
+              <div class="post-date mt-1">
+                <span>2021-00-00</span>
+              </div>
+            </div>
+
+            <div class="container-fluid btns mt-2">
+              <div>
+                <button type="button" class="icon icon-like icon-lg">
+                  <span class="sr-only">좋아요</span>
+                </button>
+                <button type="button" class="icon icon-chat icon-lg" onclick="location.href='/service/feedDetail.html'">
+                  <span class="sr-only">댓글</span>
+                </button>
+                <button type="button" class="icon icon-chat2 icon-lg" onclick="location.href='/chat/chatRoom.html'">
+                  <span class="sr-only">채팅</span>
+                </button>
+              </div>
+              <div>
+                <button type="button" class="icon icon-bookmark icon-lg">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container-fluid nums mt-1">
+              <span>좋아요 1,999</span>
+              <span>댓글 999</span>
+            </div>
+          </div>
+        </article>
+        <!--// item -->
+      
+      </div>
+
+      <!-- tab - my event -->
+      <div class="tab-pane fade" id="event" role="tabpanel" aria-labelledby="event-tab">
+
+        <section class="container top-total">
+          <span>총 99건</span>
+        </section>
+
+        <!-- 이벤트 목록 시작 -->
+        <section class="container mt-2">
+          <ul class="list-card">
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('/images/demo_feed.jpg');">
+                <div class="userthumb userthumb-sm" style="background-image: url('/images/user_photo.png');">
+                </div>
+                <span class="strcut strcut-twoline">총각네 야채가게 야채가게야채 가게야 채가게</span>
+                <button type="button" class="icon icon-bookmark icon-lg color_white">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+              <a href="/event/eventDetail.html">
+                <div class="event-body">
+                  <div class="info">
+                    <span class="date">12월 23일 - 12월 25일</span>
+                    <span>
+                      <i class="icon icon-pin icon-sm color_coolgrey"></i>
+                      <span>1.2km</span>
+                    </span>
+                  </div>
+                  <p class="strcut strcut-twoline">[미국산] 아보카도 2kg 선물세트</p>
+                  <div class="price">
+                    <div>
+                      <span>1,000,000원</span>
+                      <span>50%</span>
+                    </div>
+                    <del>100,000원</del>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('/images/demo_feed2.jpg');">
+                <div class="userthumb userthumb-sm" style="background-image: url('/images/user_photo.png');">
+                </div>
+                <span class="strcut strcut-twoline">총각네 야채가게 야채가게야채 가게야 채가게</span>
+                <button type="button" class="icon icon-bookmark icon-lg color_white">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+              <a href="/event/eventDetail.html">
+                <div class="event-body">
+                  <div class="info">
+                    <span class="date">오늘 저녁 8시까지</span>
+                    <span>
+                      <i class="icon icon-pin icon-sm color_coolgrey"></i>
+                      <span>1.2km</span>
+                    </span>
+                  </div>
+                  <p class="strcut strcut-twoline">제품명은 두줄입니다 제품명은 두줄입니다</p>
+                  <div class="price">
+                    <div>
+                      <span>200,000원</span>
+                      <span>50%</span>
+                    </div>
+                    <del>100,000원</del>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg');">
+                <div class="userthumb userthumb-sm" style="background-image: url('/images/user_photo.png');">
+                  </div>
+                <span class="strcut strcut-twoline">총각네 야채가게 야채가게야채 가게야 채가게</span>
+                <button type="button" class="icon icon-bookmark icon-lg color_white">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+              <a href="/event/eventDetail.html">
+                <div class="event-body">
+                  <div class="info">
+                    <span class="date">오늘 저녁 8시까지</span>
+                    <span>
+                      <i class="icon icon-pin icon-sm color_coolgrey"></i>
+                      <span>1.2km</span>
+                    </span>
+                  </div>
+                  <p class="strcut strcut-twoline">제품명은 두줄입니다 제품명은 두줄입니다</p>
+                  <div class="price">
+                    <div>
+                      <span>11,000,000원</span>
+                      <span>50%</span>
+                    </div>
+                    <del>100,000원</del>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg');">
+                <div class="userthumb userthumb-sm" style="background-image: url('/images/user_photo.png');">
+                  </div>
+                  <span class="strcut strcut-twoline">총각네 야채가게 야채가게야채 가게야 채가게</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+              </div>
+              <a href="/event/eventDetail.html">
+                <div class="event-body">
+                  <div class="info">
+                    <span class="date">12월 23일 - 12월 25일</span>
+                    <span>
+                      <i class="icon icon-pin icon-sm color_coolgrey"></i>
+                      <span>1.2km</span>
+                    </span>
+                  </div>
+                  <p class="strcut strcut-twoline">제품명은 두줄입니다 제품명은 두줄입니다</p>
+                  <div class="price">
+                    <div>
+                      <span>11,000,000원</span>
+                      <span>50%</span>
+                    </div>
+                    <del>100,000원</del>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg');">
+                <div class="userthumb userthumb-sm" style="background-image: url('/images/user_photo.png');">
+                  </div>
+                  <span class="strcut strcut-twoline">총각네 야채가게 야채가게야채 가게야 채가게</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+              </div>
+              <a href="/event/eventDetail.html">
+                <div class="event-body">
+                  <div class="info">
+                    <span class="date">12월 23일 - 12월 25일</span>
+                    <span>
+                      <i class="icon icon-pin icon-sm color_coolgrey"></i>
+                      <span>1.2km</span>
+                    </span>
+                  </div>
+                  <p class="strcut strcut-twoline">제품명은 두줄입니다 제품명은 두줄입니다</p>
+                  <div class="price">
+                    <div>
+                      <span>11,000,000원</span>
+                      <span>50%</span>
+                    </div>
+                    <del>100,000원</del>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+
+      <!-- tab - my story -->
+      <div class="tab-pane fade" id="story" role="tabpanel" aria-labelledby="story-tab">
+
+        <section class="container top-total">
+          <span>총 99건</span>
+        </section>
+
+        <!-- item -->
+        <article class="item-feed">
+          <div class="item-head">
+            <a href="/service/shopDetail.html" class="userthumb userthumb-md" style="background-image: url('/images/user_photo.png');"></a>
+            <!-- 인증 상점일 경우, icon-members class 적용 -->
+            <h2 class="icon-members">요앞상회 <span>서초동 주민</span></h2>
+            <div class="info">
+              <span>00분 전</span>
+            </div>
+            <a href="#;" class="icon icon-dots icon-ml dot-menu"></a>
+            <!-- edit select -->
+            <div class="pop-menu">
+              <ul>
+                <li>
+                  <a href="#;">수정</a>
+                </li>
+                <li>
+                  <a href="#;">삭제</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="item-body">
+            <!-- 사진 있는 아이템 -->
+            <div class="owl-carousel owl-theme">
+              <div class="item">
+                <img src="https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="/images/demo_feed.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="https://www.slrlounge.com/wp-content/uploads/2013/05/suburban-lake-vertical-panorama-bw-900.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="https://i.pinimg.com/originals/0b/ac/f6/0bacf62a4bd456d02d02c6b8a5c98f67.jpg" alt="">
+              </div>
+            </div>
+
+            <!-- 사진 없는 아이템 -->
+            <div class="container-fluid content mt-2">
+              <p class="mb-2">
+                잠깐 들려서 보고가세요 행사중입니다 :)
+              </p>
+              <div class="tags">
+                <a href="#;">#요앞상회</a>
+                <a href="#;">#언제든</a>
+                <a href="#;">#환영</a>
+                <a href="#;">#이벤트</a>
+              </div>
+              <div class="post-date mt-1">
+                <span>2021-00-00</span>
+              </div>
+            </div>
+
+            <div class="container-fluid btns mt-2">
+              <div>
+                <button type="button" class="icon icon-like icon-lg">
+                  <span class="sr-only">좋아요</span>
+                </button>
+                <button type="button" class="icon icon-chat icon-lg" onclick="location.href='/story/storyDetail.html'">
+                  <span class="sr-only">댓글</span>
+                </button>
+              </div>
+              <div>
+                <button type="button" class="icon icon-bookmark icon-lg">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container-fluid nums mt-1">
+              <span>좋아요 1,999</span>
+              <span>댓글 999</span>
+            </div>
+          </div>
+        </article>
+        <!--// item -->
+
+        <!-- item -->
+        <article class="item-feed">
+          <div class="item-head">
+            <a href="/service/shopDetail.html" class="userthumb userthumb-md" style="background-image: url('/images/user_photo.png');"></a>
+            <!-- 인증 상점일 경우, icon-members class 적용 -->
+            <h2 class="icon-members">요앞상회 <span>서초동 주민</span></h2>
+            <div class="info">
+              <span>00분 전</span>
+            </div>
+            <a href="#;" class="icon icon-dots icon-ml dot-menu"></a>
+            <!-- edit select -->
+            <div class="pop-menu">
+              <ul>
+                <li>
+                  <a href="#;">수정</a>
+                </li>
+                <li>
+                  <a href="#;">삭제</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="item-body">
+            <!-- 사진 없는 아이템 -->
+            <div class="container-fluid content mt-2">
+              <p class="mb-2">
+                잠깐 들려서 보고가세요 행사중입니다 :)
+              </p>
+              <div class="tags">
+                <a href="#;">#요앞상회</a>
+                <a href="#;">#언제든</a>
+                <a href="#;">#환영</a>
+                <a href="#;">#이벤트</a>
+              </div>
+              <div class="post-date mt-1">
+                <span>2021-00-00</span>
+              </div>
+            </div>
+            <div class="container-fluid btns mt-2">
+              <div>
+                <button type="button" class="icon icon-like icon-lg">
+                  <span class="sr-only">좋아요</span>
+                </button>
+                <button type="button" class="icon icon-chat icon-lg" onclick="location.href='/story/storyDetail.html'">
+                  <span class="sr-only">댓글</span>
+                </button>
+              </div>
+              <div>
+                <button type="button" class="icon icon-bookmark icon-lg">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container-fluid nums mt-1">
+              <span>좋아요 1,999</span>
+              <span>댓글 999</span>
+            </div>
+          </div>
+        </article>
+        <!--// item -->
+
+      </div>
+
+      <!-- tab - my market -->
+      <div class="tab-pane fade" id="market" role="tabpanel" aria-labelledby="market-tab">
+
+        <section class="container top-total">
+          <span>총 99건</span>
+        </section>
+
+        <!-- 장터 목록 시작 -->
+        <section class="container mt-2">
+          <ul class="list-card market">
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('/images/demo_market.jpg');">
+                <div class="thumb-top">
+                  <span class="strcut">서초동</span>
+                  <div>
+                    <i class="icon icon-sm icon-like color_white"></i>
+                    <small>99</small>
+                    <i class="icon icon-sm icon-chat color_white"></i>
+                    <small>99</small>
+                  </div>
+                </div>
+                <div class="thumb-bottom">
+                  <span>3</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+                </div>
+              </div>
+              <a href="/story/marketDetail.html">
+                <div class="market-body">
+                  <p class="strcut strcut-twoline">명품 가방 팔아요 명품 가방 팔명품 가방 팔아아명품 가방 팔아명품 가방 팔아명품 가방 팔아</p>
+                  <div class="price">
+                    <span>450,000원</span>
+                  </div>
+                  <div class="info">
+                    <span>2020-00-00 | 00:00</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('https://img2.yna.co.kr/etc/inner/KR/2020/11/09/AKR20201109052300017_01_i_P2.jpg');">
+                <div class="thumb-top">
+                  <span class="strcut">서초동</span>
+                  <div>
+                    <i class="icon icon-sm icon-like color_white"></i>
+                    <small>99</small>
+                    <i class="icon icon-sm icon-chat color_white"></i>
+                    <small>99</small>
+                  </div>
+                </div>
+                <div class="thumb-bottom">
+                  <span>3</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+                </div>
+              </div>
+              <a href="/story/marketDetail.html">
+                <div class="market-body">
+                  <p class="strcut strcut-twoline">명품 스웨터 정리합니다.</p>
+                  <div class="price">
+                    <span>50,000원</span>
+                  </div>
+                  <div class="info">
+                    <span>2020-00-00 | 00:00</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li class="soldout">
+              <div class="thumb" style="background-image: url('https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/786/9279264e4b52cb55033243f3794a2a04.jpeg');">
+                <div class="thumb-top">
+                  <span class="strcut">서초동</span>
+                  <div>
+                    <i class="icon icon-sm icon-like color_white"></i>
+                    <small>99</small>
+                    <i class="icon icon-sm icon-chat color_white"></i>
+                    <small>99</small>
+                  </div>
+                </div>
+                <div class="thumb-bottom">
+                  <span>3</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+                </div>
+              </div>
+              <a href="/story/marketDetail.html">
+                <div class="market-body">
+                  <p class="strcut strcut-twoline">뉴발이 그대를 기다린다</p>
+                  <div class="price">
+                    <span>85,000원</span>
+                  </div>
+                  <div class="info">
+                    <span>2020-00-00 | 00:00</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg');">
+                <div class="thumb-top">
+                  <span class="strcut">서초동</span>
+                  <div>
+                    <i class="icon icon-sm icon-like color_white"></i>
+                    <small>99</small>
+                    <i class="icon icon-sm icon-chat color_white"></i>
+                    <small>99</small>
+                  </div>
+                </div>
+                <div class="thumb-bottom">
+                  <span>3</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+                </div>
+              </div>
+              <a href="/story/marketDetail.html">
+                <div class="market-body">
+                  <p class="strcut strcut-twoline">명품 스웨터 정리합니다.</p>
+                  <div class="price">
+                    <span>50,000원</span>
+                  </div>
+                  <div class="info">
+                    <span>2020-00-00 | 00:00</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+    </div><!-- tab-content -->
+
+  </main>
+
+  <!-- footer -->
+  <!-- Main Nav -->
+<!-- <footer class="footer footer-nav fixed-bottom">
+  <div class="container h-100">
+    <ul class="d-flex h-100 justify-content-between align-items-center">
+      <li>
+        <a href="/service/home.html" class="icon icon-home active">
+          <span class="sr-only">홈</span>
+        </a>
+      </li>
+      <li>
+        <a href="/event/event.html" class="icon icon-bag">
+          <span class="sr-only">이벤트</span>
+        </a>
+      </li>
+      <li>
+        <a href="/story/storyHome.html" class="icon icon-yoap">
+          <span class="sr-only">우리동네</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/chat/chatHome.html" class="icon icon-chat2">
+          <span class="sr-only">채팅</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/mypage/mypageHome.html" class="icon icon-user">
+          <span class="sr-only">마이페이지</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer> -->
+
+<script>
+  $(function () {
+
+    // 메뉴 on -- 비동
+    $(".footer-nav .icon").on('click', function () {
+      $(".footer-nav .icon").removeClass('active');
+      $(this).addClass('active');
+    })
+  })
+
+</script>
+
+</div>
+
+<script>
+  $(function() {
+    // Slides
+    $(".owl-carousel").owlCarousel({
+        items: 1,
+        dots : true,
+        // autoWidth:true,
+        // autoHeight:false
+    });
+
+    // like, bookmark event action
+    $(".icon-bookmark").on('click', function(){
+      var status = $(this).hasClass('icon-bookmark-on on');
+      if(status) {
+        $(this).removeClass('icon-bookmark-on on');
+      } else {
+        $(this).addClass('icon-bookmark-on on');
+      }
+    });
+    $(".icon-like").on('click', function(){
+      var status = $(this).hasClass('icon-like-on heart-on');
+      if(status) {
+        $(this).removeClass('icon-like-on heart-on');
+      } else {
+        $(this).addClass('icon-like-on heart-on');
+      }
+    });
+
+    // pop menu action
+    $(".dot-menu").on('click', function(){
+      var parentPop = $(this).next('.pop-menu');
+      var status = parentPop.hasClass('active');
+
+      parentPop.not($('.pop-menu').removeClass('active'));
+      
+      if(status) {
+        parentPop.removeClass('active');
+      } else {
+        parentPop.addClass('active');
+      }
+      $(".pop-menu a").on('click', function(){
+        setTimeout(function() {
+          $(".pop-menu").removeClass('active');
+        }, 500);
+      });
+    });
+
+  })
+</script>
+<script src="../main.js"></script></body>
+</html>

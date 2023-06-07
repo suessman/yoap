@@ -1,0 +1,69 @@
+<head><link href=".././css/styles.css" rel="stylesheet"></head><!-- comment -->
+<footer class="footer footer-comment fixed-bottom">
+  <div class="container-fluid h-100">
+    <button type="button" class="icon icon-add color_coolgrey" onclick="attach();">
+      <span class="sr-only">이미지 첨부</span>
+    </button>
+    <label for="chat" class="sr-only">답글</label>
+    <textarea name="chat" id="chat" class="form-control" rows="1" placeholder=""></textarea>
+    <button type="button" class="btn btn-text chat">
+      <i class="icon icon-send color_primary"></i>
+      <span class="sr-only">보내기</span>
+    </button>
+  </div>
+  <div class="attach" id="attachFile">
+    <section class="attach-bar px-3">
+      <label for="uploadFiles" class="icon icon-plus icon-lg m-0">
+        <input type="file" id="uploadFiles" accept=".jfif,.jpg,.jpeg,.png,.gif" class="sr-only" multiple>
+        <span class="sr-only">파일선택</span>
+      </label>
+      <button type="button" class="icon icon-upload">
+        <span hidden>파일 Post</span>
+      </button>
+    </section>
+    <section class="attach-thumb" id="previewThumbs">
+      <div class="attach-thumb-item" style="background-image: url('/images/demo_banner.jpg');">
+        <i class="icon icon-trash"></i>
+      </div>
+      <div class="attach-thumb-item">
+        <i class="icon icon-trash"></i>
+      </div>
+      <div class="attach-thumb-item">
+        <i class="icon icon-trash"></i>
+      </div>
+      <div class="attach-thumb-item">
+        <i class="icon icon-trash"></i>
+      </div>
+      <div class="attach-thumb-item">
+        <i class="icon icon-trash"></i>
+      </div>
+    </section>
+  </div>
+</footer>
+
+
+<script>
+  function attach() {
+    var state = document.getElementById("attachFile");
+    state.classList.toggle("show");
+  }
+
+  $(function(){
+    // 채팅 진입시 하단 스크롤
+    $("html, body").animate({ scrollTop: $(document).height() }, 100);
+
+    // 채팅 영역 클릭시 첨부 이미지 창 제거
+    $('.chat-container').on('click', function(){ 
+      $('#attachFile').removeClass('show');
+    });
+    
+  });
+  $("#chat").on('focus', function(){
+    // 입력창 포커싱되면  화면 하단 자동 포커싱
+    $("html, body").animate({ scrollTop: $(document).height() }, 500);
+  });
+  $(".btn-text.chat").on('click', function(){
+    // 전송 버튼 클릭시 화면 하단 자동 포커싱
+    $("html, body").animate({ scrollTop: $(document).height() }, 500);
+  })
+</script><script src="../main.js"></script>

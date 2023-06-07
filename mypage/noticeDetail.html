@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>YOAP - 공지사항 상세</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+<!-- favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="/images/favicon.ico">
+
+<script src="/js/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+
+<!-- CSS Bootstrap 4.6.0 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/css/flatpickr.min.css">
+<link rel="stylesheet" href="/css/xpull.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css"> -->
+
+<!-- JS -->
+<!-- Bootstrap 4.6.0 -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- owl carousel -->
+<script src="/js/owl.carousel.min.js"></script>
+<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<!-- Sweetalert -->
+<script src="/js/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- Copy to clipboard -->
+<script src="/js/clipboard.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"  crossorigin="anonymous"></script> -->
+
+<script src="/js/jquery.waitforimages.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/flatpickr.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/ko.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/l10n/ko.min.js"  crossorigin="anonymous"></script> -->
+
+<!-- xpull 끌어서 새로고침  https://github.com/sjovanovic/xpull -->
+<script src="/js/xpull.js"></script>
+
+<link href=".././css/styles.css" rel="stylesheet"></head>
+<body>
+
+<!--[if IE]>
+<div class="p-3 bg-light">
+  <div class="container">
+    <p class="mb-0 browserupgrade">
+      You are using an <strong>outdated</strong> browser.
+      Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </p>
+  </div>
+</div>
+<![endif]-->
+
+
+<div class="d-flex flex-column">
+  
+  <header class="fixed-top header-main title">
+    <section class="container-fluid top-nav between">
+      <a href="#;" class="btn btn-icon" title="이전으로" onclick="history.back();">
+        <span class="icon icon-left icon-ml back"></span>
+      </a>
+      <h1>공지사항</h1>
+    </section>
+  </header>
+
+  <main class="d-flex flex-column h-100 ui ui-footer">
+
+    <header class="container-fluid px-0 mypage">
+      <a href="/mypage/notice.html" class="row-bar article">
+        <div class="mb-2 strcut strcut-twoline title-detail">시스템 점검이 있을 예정입니다.</div>
+        <span class="date">2021-00-00</span>
+      </a>
+    </header>
+
+    <article class="container-fluid mypage article-body my-3">
+      <img src="/images/demo_feed.jpg" class="img-fluid" alt="첨부이미지">
+      <div class="content">
+        공지사항 내용.<br>
+무엇을 주며, 있을 힘차게 청춘은 청춘 있다. 많이 우리의 오직 황금시대다. 가치를 품고 피에 그들에게 우리 무엇을 있다. 든 예가 내는 살 힘차게 이상을 수 말이다. 그들은 끓는 모래뿐일 피고, 인도하겠다는 힘있다. 밥을 이상, 역사를 수 웅대한 속에 크고 있는 보이는 말이다. 그러므로 작고 못할 산야에 우리 철환하였는가? 싹이 같이, 황금시대의 석가는 끓는 안고, 뿐이다.
+      </div>
+    </article>
+
+
+  </main>
+
+  <!-- footer -->
+  <!-- Main Nav -->
+<!-- <footer class="footer footer-nav fixed-bottom">
+  <div class="container h-100">
+    <ul class="d-flex h-100 justify-content-between align-items-center">
+      <li>
+        <a href="/service/home.html" class="icon icon-home active">
+          <span class="sr-only">홈</span>
+        </a>
+      </li>
+      <li>
+        <a href="/event/event.html" class="icon icon-bag">
+          <span class="sr-only">이벤트</span>
+        </a>
+      </li>
+      <li>
+        <a href="/story/storyHome.html" class="icon icon-yoap">
+          <span class="sr-only">우리동네</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/chat/chatHome.html" class="icon icon-chat2">
+          <span class="sr-only">채팅</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/mypage/mypageHome.html" class="icon icon-user">
+          <span class="sr-only">마이페이지</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer> -->
+
+<script>
+  $(function () {
+
+    // 메뉴 on -- 비동
+    $(".footer-nav .icon").on('click', function () {
+      $(".footer-nav .icon").removeClass('active');
+      $(this).addClass('active');
+    })
+  })
+
+</script>
+
+</div>
+
+<script src="../main.js"></script></body>
+</html>

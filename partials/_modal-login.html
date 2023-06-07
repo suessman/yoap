@@ -1,0 +1,56 @@
+<head><link href=".././css/styles.css" rel="stylesheet"></head><!-- Modal -->
+<div class="modal fade" id="login" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="modal-title info mb-3">로그인이 필요한 서비스입니다.</h5>
+        <div class="container">
+          <form action="">
+            <div class="row">
+              <div class="form-group col-md">
+                <input type="text" class="form-control" id="id" aria-describedby="아이디입력" placeholder="아이디">
+              </div>
+              <div class="form-group col-md">
+                <input type="password" class="form-control" id="pw" aria-describedby="비밀번호" placeholder="비밀번호">
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block">
+              <span class="icon icon-yoap icon-sm color_white align-middle"></span>
+              <span class="align-middle">로그인</span>
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-block">회원가입</button>
+
+          </form>
+          <div class="find-pass">
+            <a href="/findPass.html">아이디&#8901;비밀번호 찾기</a>
+          </div>
+          <section class="sns-login">
+            <a href="#;" class="btn btn-lg btn-block kakao">카카오톡으로 로그인</a>
+            <a href="#;" class="btn btn-lg btn-block naver">네이버로 로그인</a>
+            <a href="#;" class="btn btn-lg btn-block apple">Apple로 로그인</a>
+          </section>
+          <!-- <section class="d-flex justify-content-around mt-4">
+            <button class="btn btn-login">
+              <img src="/images/login-kakao.svg" alt="카카오로그인">
+            </button>
+            <button class="btn btn-login">
+              <img src="/images/login-naver.svg" alt="네이버로그인">
+            </button>
+            <button class="btn btn-login">
+              <img src="/images/login-apple.svg" alt="애플로그인">
+            </button>
+          </section> -->
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../main.js"></script>

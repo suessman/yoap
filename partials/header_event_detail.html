@@ -1,0 +1,93 @@
+<head><link href=".././css/styles.css" rel="stylesheet"></head>  <header class="fixed-top header-main">
+    <section class="container-fluid top-nav between">
+      <a href="#;" class="btn btn-icon" title="이전으로" onclick="history.back();">
+        <span class="icon icon-left icon-ml back"></span>
+      </a>
+      <h1>요앞이벤트</h1>
+      <div class="btns-wrap">
+        <a href="#;" title="공유하기" data-toggle="modal" data-target="#share">
+          <span class="icon icon-share icon-ml"></span>
+        </a>
+        <button type="button" class="icon icon-dots icon-ml">
+          <span class="sr-only">메뉴</span>
+        </button>
+        <nav class="pop-menu">
+          <ul>
+            <li>
+              <a href="#;">새로고침</a>
+            </li>
+            <!-- 사용자일 경우 신고하기 활성화-->
+            <li>
+              <a href="./addReport.html">신고하기</a>
+            </li>
+            <!-- 작성자일 경우 끌어올리기 활성화 -->
+            <li>
+              <a href="#;">끌어 올리기</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+    <section class="breadcrumb">
+      <span>식료품</span>
+      <span>과일</span>
+    </section>
+  </header>
+
+  <!-- Modal 공유 -->
+    <!-- Modal -->
+  <div class="modal fade" id="share" data-keyboard="false" tabindex="-1" aria-labelledby="shareLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5 class="modal-title info mb-3">공유하기</h5>
+          <div class="text-center mt-3">
+            <div class="form-gruop my-4 col-14 offset-1">
+              <input type="text" id="shareUrl" class="form-control" value="http://aaddfsdfsdfaaaa" onclick="select()"
+                readonly>
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-fix btn-lg mr-1" data-dismiss="modal">취소</button>
+            <button type="button" class="btn btn-primary btn-fix btn-lg share-copy"
+              data-clipboard-target="#shareUrl">링크복사</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // 공유 주소 복사
+    var clipboard = new ClipboardJS('.share-copy');
+    clipboard.on('success', function (e) {
+      alert('공유 주소가 복사됐습니다');
+      $('#share').modal('hide');
+    });
+  </script>
+
+
+  <script>
+    $(function(){
+      // dot menu action
+      $(".icon-dots").on('click', function(){
+        var status = $('.pop-menu').hasClass('active');
+        if(status) {
+          $('.pop-menu').removeClass('active');
+        } else {
+          $('.pop-menu').addClass('active');
+        }
+      })
+      $('main').on('click', function(){
+        $('.pop-menu').removeClass('active');
+      });
+    })
+  </script>
+
+  <script src="../main.js"></script>

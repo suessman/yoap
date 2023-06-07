@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>YOAP - 일반상품</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+<!-- favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="/images/favicon.ico">
+
+<script src="../js/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+
+<!-- CSS Bootstrap 4.6.0 -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../css/owl.theme.default.min.css">
+<link rel="stylesheet" href="../css/flatpickr.min.css">
+<link rel="stylesheet" href="../css/xpull.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist../css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css"> -->
+
+<!-- JS -->
+<!-- Bootstrap 4.6.0 -->
+<script src="../js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist../js/bootstrap.bundle.min.js"></script> -->
+<!-- owl carousel -->
+<script src="../js/owl.carousel.min.js"></script>
+<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<!-- Sweetalert -->
+<script src="../js/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- Copy to clipboard -->
+<script src="../js/clipboard.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"  crossorigin="anonymous"></script> -->
+
+<script src="../js/jquery.waitforimages.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js" crossorigin="anonymous"></script> -->
+
+<script src="../js/flatpickr.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" crossorigin="anonymous"></script> -->
+
+<script src="../js/ko.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/l10n/ko.min.js"  crossorigin="anonymous"></script> -->
+
+<!-- xpull 끌어서 새로고침  https://github.com/sjovanovic/xpull -->
+<script src="../js/xpull.js"></script>
+
+<link href="../css/styles.css" rel="stylesheet"></head>
+
+<body>
+
+<!--[if IE]>
+<div class="p-3 bg-light">
+  <div class="container">
+    <p class="mb-0 browserupgrade">
+      You are using an <strong>outdated</strong> browser.
+      Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </p>
+  </div>
+</div>
+<![endif]-->
+
+
+<div class="d-flex flex-column">
+  
+    <header class="fixed-top header-main event">
+    <section class="container-fluid top-nav end">
+      <!-- 지역선택 -->
+      <a href="#;" class="area" data-toggle="modal" data-target="#areaChange">서초동</a>
+      <a href="/story/searchStory.html" class="icon icon-search icon-ml">
+        <span class="sr-only">검색</span>
+      </a>
+    </section>
+
+    <!-- 탭 -->
+    <section class="container-fluid px-0 tab">
+      <ul class="tab-list nav nav-tabs" id="eventTab" role="tablist">
+        <li>
+          <a href="#story" class="active" id="story-tab" data-toggle="tab" href="#story" role="tab" aria-controls="story" aria-selected="true">동네이야기</a>
+        </li>
+        <li>
+          <a href="#market" class="" id="market-tab" data-toggle="tab" href="#market" role="tab" aria-controls="market" aria-selected="false">나눔장터</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 카테고리 선택 -->
+    <section class="container-fluid top-category">
+      <label class="badge-checkbox" for="checkAll">
+        <input type="checkbox" value="1" id="checkAll" hidden checked>
+        <span>전체</span>
+      </label>
+      <label class="badge-checkbox" for="item-2">
+        <input type="checkbox" value="2" id="item-2" hidden>
+        <span>요리/제조</span>
+      </label>
+      <label class="badge-checkbox" for="item-3">
+        <input type="checkbox" value="3" id="item-3" hidden>
+        <span>반려동물</span>
+      </label>
+      <label class="badge-checkbox" for="item-4">
+        <input type="checkbox" value="4" id="item-4" hidden>
+        <span>가족/결혼</span>
+      </label>
+      <label class="badge-checkbox" for="item-5">
+        <input type="checkbox" value="5" id="item-5" hidden>
+        <span>자유주제</span>
+      </label>
+      <label class="badge-checkbox" for="item-6">
+        <input type="checkbox" value="6" id="item-6" hidden>
+        <span>정보</span>
+      </label>
+    </section>
+  </header>
+
+  <script>
+    $(function() {
+
+      // 전체 체크시 나머지 체크 해제
+      $(".badge-checkbox #checkAll").on('click', function(){
+        if($(this).prop('checked', true)) {
+          console.log($(this).parent())
+          $(this).parent().siblings('label').children('input').prop('checked', false);
+        }
+      });
+      // 나머지 선택시 전체 체크 해제
+      $(".badge-checkbox :not(#checkAll)").on('click', function(){
+        $("#checkAll").prop('checked', false);
+      });
+
+      //--- Tabs - Following border animation
+      var w = Math.round($(".tab-list li").width());
+      var initPos = $(".tab-list a.active").parent('li').position();
+      $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + initPos.left + 'px;}</style>');
+      
+      // window resize support
+      var resizeTimer;
+      $(window).on('resize', function(e) {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          w = Math.round($(".tab-list li").width());
+          initPos = $(".tab-list a.active").parent('li').position();
+          $("head").find('#append-style').remove();
+          $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + initPos.left + 'px;}</style>');
+        }, 250);
+      });
+      // tab active
+      $(".tab-list li").on('click', function() {
+        var pos = $(this).position();
+        $("head").find('#append-style').remove();
+        $(".tab-list li a").removeClass('active');
+        $("head").append('<style id="append-style">.tab-list:after{width:' + w + 'px; left: ' + pos.left + 'px;}</style>');
+        $(this).children('a').addClass('active');
+      });
+
+      // BS tab action
+      $('#eventTab a').on('click', function (event) {
+        event.preventDefault()
+        $(this).tab('show')
+      })
+    })
+  </script>
+
+
+  <main class="d-flex h-100 flex-column ui ui-event">
+
+    <!-- 끌어서 새로고침 Markup for xpull plugin -->
+    <div class="xpull">
+      <div class="xpull__start-msg">
+        <div class="xpull__arrow"></div>
+      </div>
+      <div class="xpull__spinner">
+        <div class="svg-spinner"></div>
+        <!-- <div class="xpull__spinner-circle"></div> -->
+      </div>
+    </div>
+    <!-- 끌어서 새로고침 End Markup for xpull plugin -->
+
+    <div class="tab-content">
+      
+      <!-- tab product -->
+      <div class="tab-pane fade show active" id="story" role="tabpanel" aria-labelledby="story-tab">
+ 
+        <!-- item -->
+        <article class="item-feed">
+          <div class="item-head">
+            <a href="/service/shopDetail.html" class="userthumb userthumb-md" style="background-image: url('/images/user_photo.png');"></a>
+            <!-- 인증 상점일 경우, icon-members class 적용 -->
+            <h2>요앞상회 <span>서초동 주민</span></h2>
+            <div class="info">
+              <span>00분 전</span>
+            </div>
+          </div>
+          
+          <div class="item-body">
+            <!-- 사진 있는 아이템 -->
+            <div class="owl-carousel owl-theme">
+              <div class="item">
+                <img src="https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="/images/demo_feed.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="https://www.slrlounge.com/wp-content/uploads/2013/05/suburban-lake-vertical-panorama-bw-900.jpg" alt="">
+              </div>
+              <div class="item">
+                <img src="https://i.pinimg.com/originals/0b/ac/f6/0bacf62a4bd456d02d02c6b8a5c98f67.jpg" alt="">
+              </div>
+            </div>
+
+            <!-- 사진 없는 아이템 -->
+            <div class="container-fluid content mt-2">
+              <p class="mb-2 addReadMore showlesscontent">
+                잠깐 들려서 보고가세요 행사중입니다 :)잠깐 들려서 보고가세요 행사중입니다 :)잠깐 들려서 보고가세요 행사중입니다 :)잠깐 들려서 보고가세요 행사중입니다 :)
+              </p>
+              <div class="tags">
+                <a href="#;">#요앞상회</a>
+                <a href="#;">#언제든</a>
+                <a href="#;">#환영</a>
+                <a href="#;">#이벤트</a>
+              </div>
+              <div class="post-date mt-1">
+                <span>2021-00-00</span>
+              </div>
+            </div>
+
+            <div class="container-fluid btns mt-2">
+              <div>
+                <button type="button" class="icon icon-like icon-lg">
+                  <span class="sr-only">좋아요</span>
+                </button>
+                <button type="button" class="icon icon-chat icon-lg" onclick="location.href='/story/storyDetail.html'">
+                  <span class="sr-only">댓글</span>
+                </button>
+              </div>
+              <div>
+                <button type="button" class="icon icon-bookmark icon-lg">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container-fluid nums mt-1">
+              <span>좋아요 1,999</span>
+              <span>댓글 999</span>
+            </div>
+          </div>
+        </article>
+        <!--// item -->
+
+        <!-- AD -->
+        <article class="item-feed">
+          <div class="item-head">
+            <a href="/service/shopDetail.html" class="userthumb userthumb-md" style="background-image: url('/images/user_photo.png');"></a>
+            <h2>요앞상회</h2>
+            <div class="info">
+              <span>지역광고</span>
+            </div>
+          </div>
+          
+          <div class="item-body">
+            <!-- 사진 있는 아이템 -->
+            <div class="owl-carousel owl-theme">
+              <div class="item">
+                <img src="/images/demo_ad.png" alt="광고">
+              </div>
+              <div class="item">
+                <img src="/images/demo_feed.jpg" alt="광고">
+              </div>
+            </div>
+
+            <!-- 사진 없는 아이템 -->
+            <div class="container-fluid content mt-2">
+              <p class="mb-2 addReadMore showlesscontent">
+                광고입니다.
+              </p>
+              <div class="tags">
+                <a href="#;">#요앞상회</a>
+                <a href="#;">#언제든</a>
+                <a href="#;">#환영</a>
+                <a href="#;">#이벤트</a>
+              </div>
+              <div class="post-date mt-1">
+                <span>2021-00-00</span>
+              </div>
+            </div>
+
+            <div class="container-fluid btns mt-2">
+              <div>
+                <button type="button" class="icon icon-like icon-lg">
+                  <span class="sr-only">좋아요</span>
+                </button>
+                <button type="button" class="icon icon-chat icon-lg" onclick="location.href='/service/feedDetail.html'">
+                  <span class="sr-only">댓글</span>
+                </button>
+              </div>
+              <div>
+                <button type="button" class="icon icon-bookmark icon-lg">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container-fluid nums mt-1">
+              <span>좋아요 1,999</span>
+              <span>댓글 999</span>
+            </div>
+          </div>
+        </article>
+        <!--// AD -->
+
+        <!-- item -->
+        <article class="item-feed">
+          <div class="item-head">
+            <a href="/service/shopDetail.html" class="userthumb userthumb-md" style="background-image: url('/images/user_photo.png');"></a>
+            <!-- 인증 상점일 경우, icon-members class 적용 -->
+            <h2>요앞상회 <span>서초동 주민</span></h2>
+            <div class="info">
+              <span>00분 전</span>
+            </div>
+          </div>
+          
+          <div class="item-body">
+            <!-- contents -->
+            <div class="container-fluid content mt-2">
+              <p class="mb-2 addReadMore showlesscontent">
+                잠깐 들려서 보고가세요 행사중입니다 :)
+              </p>
+              <div class="tags">
+                <a href="#;">#요앞상회</a>
+                <a href="#;">#언제든</a>
+                <a href="#;">#환영</a>
+                <a href="#;">#이벤트</a>
+              </div>
+              <div class="post-date mt-1">
+                <span>2021-00-00</span>
+              </div>
+            </div>
+
+            <div class="container-fluid btns mt-2">
+              <div>
+                <button type="button" class="icon icon-like icon-lg">
+                  <span class="sr-only">좋아요</span>
+                </button>
+                <button type="button" class="icon icon-chat icon-lg" onclick="location.href='/story/storyDetail.html'">
+                  <span class="sr-only">댓글</span>
+                </button>
+              </div>
+              <div>
+                <button type="button" class="icon icon-bookmark icon-lg">
+                  <span class="sr-only">북마크</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container-fluid nums mt-1">
+              <span>좋아요 1,999</span>
+              <span>댓글 999</span>
+            </div>
+          </div>
+        </article>
+        <!--// item -->
+      </div>
+
+      <!-- tab market -->
+      <div class="tab-pane fade" id="market" role="tabpanel" aria-labelledby="market-tab">
+
+        <!-- filters -->
+        <section class="container top-filter">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="except-item">
+            <label class="custom-control-label" for="except-item">거래완료 제외</label>
+          </div>
+        </section>
+
+        <!-- 장터 목록 시작 -->
+        <section class="container mt-2">
+          <ul class="list-card market">
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('/images/demo_market.jpg');">
+                <div class="thumb-top">
+                  <span class="strcut">서초동</span>
+                  <div>
+                    <i class="icon icon-sm icon-like color_white"></i>
+                    <small>99</small>
+                    <i class="icon icon-sm icon-chat color_white"></i>
+                    <small>99</small>
+                  </div>
+                </div>
+                <div class="thumb-bottom">
+                  <span>3</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+                </div>
+              </div>
+              <a href="/story/marketDetail.html">
+                <div class="market-body">
+                  <p class="strcut strcut-twoline">명품 가방 팔아요 명품 가방 팔명품 가방 팔아아명품 가방 팔아명품 가방 팔아명품 가방 팔아</p>
+                  <div class="price">
+                    <span>450,000원</span>
+                  </div>
+                  <div class="info">
+                    <span>2020-00-00 | 00:00</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('/images/demo_ad.png');">
+                <div class="thumb-top">
+                  <span class="strcut">석촌동</span>
+                  <div>
+                    <i class="icon icon-sm icon-like color_white"></i>
+                    <small>99</small>
+                    <i class="icon icon-sm icon-chat color_white"></i>
+                    <small>99</small>
+                  </div>
+                </div>
+                <div class="thumb-bottom">
+                  <span>3</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+                </div>
+              </div>
+              <a href="/story/marketAdDetail.html">
+                <div class="market-body">
+                  <p class="strcut strcut-twoline">휴메인크휘트니스 석촌점</p>
+                  <div class="price">
+                    <span class="ad-info">지역광고</span>
+                  </div>
+                  <div class="info">
+                    <span>2020-00-00 | 00:00</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li class="soldout">
+              <div class="thumb" style="background-image: url('https://img2.yna.co.kr/etc/inner/KR/2020/11/09/AKR20201109052300017_01_i_P2.jpg');">
+                <div class="thumb-top">
+                  <span class="strcut">서초동</span>
+                  <div>
+                    <i class="icon icon-sm icon-like color_white"></i>
+                    <small>99</small>
+                    <i class="icon icon-sm icon-chat color_white"></i>
+                    <small>99</small>
+                  </div>
+                </div>
+                <div class="thumb-bottom">
+                  <span>3</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+                </div>
+              </div>
+              <a href="/story/marketDetail.html">
+                <div class="market-body">
+                  <p class="strcut strcut-twoline">명품 스웨터 정리합니다.</p>
+                  <div class="price">
+                    <span>50,000원</span>
+                  </div>
+                  <div class="info">
+                    <span>2020-00-00 | 00:00</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/786/9279264e4b52cb55033243f3794a2a04.jpeg');">
+                <div class="thumb-top">
+                  <span class="strcut">서초동</span>
+                  <div>
+                    <i class="icon icon-sm icon-like color_white"></i>
+                    <small>99</small>
+                    <i class="icon icon-sm icon-chat color_white"></i>
+                    <small>99</small>
+                  </div>
+                </div>
+                <div class="thumb-bottom">
+                  <span>3</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+                </div>
+              </div>
+              <a href="/story/marketDetail.html">
+                <div class="market-body">
+                  <p class="strcut strcut-twoline">뉴발이 그대를 기다린다</p>
+                  <div class="price">
+                    <span>85,000원</span>
+                  </div>
+                  <div class="info">
+                    <span>2020-00-00 | 00:00</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- item -->
+            <li>
+              <div class="thumb" style="background-image: url('https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg');">
+                <div class="thumb-top">
+                  <span class="strcut">서초동</span>
+                  <div>
+                    <i class="icon icon-sm icon-like color_white"></i>
+                    <small>99</small>
+                    <i class="icon icon-sm icon-chat color_white"></i>
+                    <small>99</small>
+                  </div>
+                </div>
+                <div class="thumb-bottom">
+                  <span>3</span>
+                  <button type="button" class="icon icon-bookmark icon-lg color_white">
+                    <span class="sr-only">북마크</span>
+                  </button>
+                </div>
+              </div>
+              <a href="/story/marketDetail.html">
+                <div class="market-body">
+                  <p class="strcut strcut-twoline">명품 스웨터 정리합니다.</p>
+                  <div class="price">
+                    <span>50,000원</span>
+                  </div>
+                  <div class="info">
+                    <span>2020-00-00 | 00:00</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+
+    </div><!--// tab-content -->
+
+  </main>
+
+  <!-- footer -->
+  <!-- Main Nav -->
+<!-- <footer class="footer footer-nav fixed-bottom">
+  <div class="container h-100">
+    <ul class="d-flex h-100 justify-content-between align-items-center">
+      <li>
+        <a href="/service/home.html" class="icon icon-home active">
+          <span class="sr-only">홈</span>
+        </a>
+      </li>
+      <li>
+        <a href="/event/event.html" class="icon icon-bag">
+          <span class="sr-only">이벤트</span>
+        </a>
+      </li>
+      <li>
+        <a href="/story/storyHome.html" class="icon icon-yoap">
+          <span class="sr-only">우리동네</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/chat/chatHome.html" class="icon icon-chat2">
+          <span class="sr-only">채팅</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/mypage/mypageHome.html" class="icon icon-user">
+          <span class="sr-only">마이페이지</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer> -->
+
+<script>
+  $(function () {
+
+    // 메뉴 on -- 비동
+    $(".footer-nav .icon").on('click', function () {
+      $(".footer-nav .icon").removeClass('active');
+      $(this).addClass('active');
+    })
+  })
+
+</script>
+
+  <!-- floating post ui -->
+  <nav class="post-ui">
+  <div class="wrap">
+    <a href="#" class="fbtn btn-write" data-toggle="modal" data-target="#blockui">
+      <i class="icon icon-plus"></i>
+      <span class="sr-only">글쓰기</span>
+    </a>
+    <div class="sub-btns">
+      <ul>
+        <li>
+          <a href="/story/addMarket.html" class="fbtn fbtn-text">
+            <i class="icon icon-pencil"></i>
+            <span>나눔장터</span>
+          </a>
+        </li>
+        <li>
+          <a href="/story/addStory.html" class="fbtn fbtn-text">
+            <i class="icon icon-yoap"></i>
+            <span>동네이야기</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- backdrop -->
+<div class="modal-overlay" id="blockui" aria-hidden="true"></div>
+<script>
+  $(function () {
+    // ui action
+    $(".btn-write").on('click', function (e) {
+      e.preventDefault();
+      var hasActive = $(this).hasClass('active');
+      if (hasActive) {
+        $(this).removeClass('active');
+      } else {
+        $(this).addClass('active');
+      }
+    });
+
+    // on click backdrop 
+    // $("#blockui").on('click', function () {
+    //   // $(this).modal({ backdrop: 'static', keyboard: false });
+    // });
+
+  })
+</script>
+
+</div>
+
+<!-- Modal 로그인 -->
+<!-- Modal -->
+<div class="modal fade" id="login" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="modal-title info mb-3">로그인이 필요한 서비스입니다.</h5>
+        <div class="container">
+          <form action="">
+            <div class="row">
+              <div class="form-group col-md">
+                <input type="text" class="form-control" id="id" aria-describedby="아이디입력" placeholder="아이디">
+              </div>
+              <div class="form-group col-md">
+                <input type="password" class="form-control" id="pw" aria-describedby="비밀번호" placeholder="비밀번호">
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block">
+              <span class="icon icon-yoap icon-sm color_white align-middle"></span>
+              <span class="align-middle">로그인</span>
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-block">회원가입</button>
+
+          </form>
+          <div class="find-pass">
+            <a href="/findPass.html">아이디&#8901;비밀번호 찾기</a>
+          </div>
+          <section class="sns-login">
+            <a href="#;" class="btn btn-lg btn-block kakao">카카오톡으로 로그인</a>
+            <a href="#;" class="btn btn-lg btn-block naver">네이버로 로그인</a>
+            <a href="#;" class="btn btn-lg btn-block apple">Apple로 로그인</a>
+          </section>
+          <!-- <section class="d-flex justify-content-around mt-4">
+            <button class="btn btn-login">
+              <img src="/images/login-kakao.svg" alt="카카오로그인">
+            </button>
+            <button class="btn btn-login">
+              <img src="/images/login-naver.svg" alt="네이버로그인">
+            </button>
+            <button class="btn btn-login">
+              <img src="/images/login-apple.svg" alt="애플로그인">
+            </button>
+          </section> -->
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="areaChange" tabindex="-1" aria-labelledby="areaChangeLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="areaChangeLabel">지역설정</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label class="col-16 label">현재동네</label>
+          <div class="col-14">
+            <label for="here" class="text-label round">서초동</label>
+          </div>
+          <div class="col-2 px-0 d-flex align-items-center">
+            <div class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" name="areaOption" id="here" checked>
+              <label class="custom-control-label" for="here">
+                <span class="sr-only">서초동</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <section class="col-14">
+            <div class="bg-wrap">
+              <b class="label">근처 동네</b>
+              <ul class="list-area">
+                <li>
+                  <div class="form-check hide">
+                    <input class="form-check-input" type="radio" name="area" id="area1" value="대치동">
+                    <label class="form-check-label" for="area1">
+                      서울 강남구 대치동
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check hide">
+                    <input class="form-check-input" type="radio" name="area" id="area2" value="개포동">
+                    <label class="form-check-label" for="area2">
+                      서울 강남구 개포동
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check hide">
+                    <input class="form-check-input" type="radio" name="area" id="area3" value="양재동">
+                    <label class="form-check-label" for="area3">
+                      서울 강남구 양재동
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check hide">
+                    <input class="form-check-input" type="radio" name="area" id="area4" value="역삼동">
+                    <label class="form-check-label" for="area4">
+                      서울 강남구 역삼동
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check hide">
+                    <input class="form-check-input" type="radio" name="area" id="area5" value="ㅁㅁ">
+                    <label class="form-check-label" for="area5">
+                      서울 강남구 대치동
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check hide">
+                    <input class="form-check-input" type="radio" name="area" id="area6" value="ㅎㅎ">
+                    <label class="form-check-label" for="area6">
+                      서울 강남구 대치동
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check hide">
+                    <input class="form-check-input" type="radio" name="area" id="area7" value="ㅗㅗ">
+                    <label class="form-check-label" for="area7">
+                      서울 강남구 대치동
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check hide">
+                    <input class="form-check-input" type="radio" name="area" id="area8" value="ㅈㅈ">
+                    <label class="form-check-label" for="area8">
+                      서울 강남구 대치동
+                    </label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+        <div class="form-group row">
+          <label class="col-16 label">거주지 동네</label>
+          <div class="col-14">
+            <label for="home" class="text-label round">서초동</label>
+          </div>
+          <div class="col-2 px-0 d-flex align-items-center">
+            <div class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" name="areaOption" id="home">
+              <label class="custom-control-label" for="home">
+                <span class="sr-only">서초동</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-16 label">직장 동네</label>
+          <div class="col-14">
+            <label for="office" class="text-label round">여의도동</label>
+          </div>
+          <div class="col-2 px-0 d-flex align-items-center">
+            <div class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" name="areaOption" id="office">
+              <label class="custom-control-label" for="office">
+                <span class="sr-only">여의도동</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-fix btn-outline-primary">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// modal 팝업내 위치 선택 add active
+$(".list-area li .form-check-label").on('click', function() {
+  $(".list-area li .form-check-label").removeClass('active');
+  $(this).addClass('active');
+  // console.log($(this).prev('input').val());
+  $("#here").prop('checked', true);
+  console.log($(this).prev('input').is(':checked'));
+});
+$("input[name='areaOption']").on('change', function() {
+  $(".list-area li .form-check-label").removeClass('active');
+});
+</script>
+
+<script>
+  $(function() {
+    // Slides
+    $(".owl-carousel").owlCarousel({
+        items: 1,
+        dots : true,
+        // autoWidth:true,
+        // autoHeight:false
+    });
+
+    // like, bookmark event action
+    $(".icon-bookmark").on('click', function(){
+      var status = $(this).hasClass('icon-bookmark-on on');
+      if(status) {
+        $(this).removeClass('icon-bookmark-on on');
+      } else {
+        $(this).addClass('icon-bookmark-on on');
+      }
+    });
+    $(".icon-like").on('click', function(){
+      var status = $(this).hasClass('icon-like-on heart-on');
+      if(status) {
+        $(this).removeClass('icon-like-on heart-on');
+      } else {
+        $(this).addClass('icon-like-on heart-on');
+      }
+    });
+
+    // pop menu action
+    $(".sort").on('click', function(){
+      var status = $(".pop-menu").hasClass('active');
+      if(status) {
+        $(".pop-menu").removeClass('active');
+      } else {
+        $(".pop-menu").addClass('active');
+      }
+    });
+    $(".pop-menu a").on('click', function(){
+      var select = $(this).html();
+      console.log(select)
+      setTimeout(function() {
+        $(".pop-menu").removeClass('active');
+        $(".sort span").html(select);
+      }, 500);
+    });
+
+    // Soldout except
+    $("#except-item").on('change', function(){
+      if($(this).is(":checked") == true) {
+        $('.list-card .soldout').hide();
+      } else {
+        $('.list-card .soldout').show();
+      }
+    });
+
+    // 밑으로 끌어서 새로고침
+    $('main').xpull({
+      'callback': function () {
+        console.log('Released...');
+      }
+    })
+
+    // Read more
+    AddReadMore();
+  })
+
+  // Read more Function
+  function AddReadMore() {
+    var carLmt = 80;
+    var readMoreTxt = " ... 더 보기";
+    var readLessTxt = " 숨기기";
+
+    $(".addReadMore").each(function() {
+        if ($(this).find(".firstSec").length)
+            return;
+
+        var allstr = $(this).text();
+        if (allstr.length > carLmt) {
+            var firstSet = allstr.substring(0, carLmt);
+            var secdHalf = allstr.substring(carLmt, allstr.length);
+            var strtoadd = firstSet + "<span class='SecSec'>" + secdHalf + "</span><span class='readMore'  title='더보기'>" + readMoreTxt + "</span>";
+            $(this).html(strtoadd);
+        }
+
+    });
+    $(document).on("click", ".readMore,.readLess", function() {
+        $(this).closest(".addReadMore").toggleClass("showlesscontent showmorecontent");
+    });
+  }
+</script>
+<script src="../main.js"></script></body>
+</html>

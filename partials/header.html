@@ -1,0 +1,56 @@
+<head><link href=".././css/styles.css" rel="stylesheet"></head>  <header class="fixed-top header-main">
+    <section class="container-fluid top-nav end">
+      <!-- 지역선택 -->
+      <a href="#;" class="area" data-toggle="modal" data-target="#areaChange">서초동</a>
+      <a href="/service/searchFeed.html" class="icon icon-search icon-ml">
+        <span class="sr-only">검색</span>
+      </a>
+      <a href="/service/nearMap.html" class="icon icon-map icon-ml">
+        <span class="sr-only">지도</span>
+      </a>
+    </section>
+    <!-- 카테고리 선택 -->
+    <section class="container-fluid top-category">
+      <label class="badge-checkbox" for="checkAll">
+        <input type="checkbox" value="1" id="checkAll" hidden checked>
+        <span>전체</span>
+      </label>
+      <label class="badge-checkbox" for="item-2">
+        <input type="checkbox" value="2" id="item-2" hidden>
+        <span>요리/제조</span>
+      </label>
+      <label class="badge-checkbox" for="item-3">
+        <input type="checkbox" value="3" id="item-3" hidden>
+        <span>반려동물</span>
+      </label>
+      <label class="badge-checkbox" for="item-4">
+        <input type="checkbox" value="4" id="item-4" hidden>
+        <span>가족/결혼</span>
+      </label>
+      <label class="badge-checkbox" for="item-5">
+        <input type="checkbox" value="5" id="item-5" hidden>
+        <span>자유주제</span>
+      </label>
+      <label class="badge-checkbox" for="item-6">
+        <input type="checkbox" value="6" id="item-6" hidden>
+        <span>정보</span>
+      </label>
+    </section>
+  </header>
+
+  <script>
+    $(function() {
+      // 전체 체크시 나머지 체크 해제
+      $(".badge-checkbox #checkAll").on('click', function(){
+        if($(this).prop('checked', true)) {
+          console.log($(this).parent())
+          $(this).parent().siblings('label').children('input').prop('checked', false);
+        }
+      });
+      // 나머지 선택시 전체 체크 해제
+      $(".badge-checkbox :not(#checkAll)").on('click', function(){
+        $("#checkAll").prop('checked', false);
+      });
+    })
+  </script>
+<script src="../main.js"></script>

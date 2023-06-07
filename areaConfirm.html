@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>YOAP - 지역인증</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+<!-- favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="./images/favicon.ico">
+
+<script src="./js/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+
+<!-- CSS Bootstrap 4.6.0 -->
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/owl.carousel.min.css">
+<link rel="stylesheet" href="./css/owl.theme.default.min.css">
+<link rel="stylesheet" href="./css/flatpickr.min.css">
+<link rel="stylesheet" href="./css/xpull.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist./css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css"> -->
+
+<!-- JS -->
+<!-- Bootstrap 4.6.0 -->
+<script src="./js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist./js/bootstrap.bundle.min.js"></script> -->
+<!-- owl carousel -->
+<script src="./js/owl.carousel.min.js"></script>
+<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<!-- Sweetalert -->
+<script src="./js/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- Copy to clipboard -->
+<script src="./js/clipboard.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"  crossorigin="anonymous"></script> -->
+
+<script src="./js/jquery.waitforimages.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js" crossorigin="anonymous"></script> -->
+
+<script src="./js/flatpickr.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" crossorigin="anonymous"></script> -->
+
+<script src="./js/ko.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/l10n/ko.min.js"  crossorigin="anonymous"></script> -->
+
+<!-- xpull 끌어서 새로고침  https://github.com/sjovanovic/xpull -->
+<script src="./js/xpull.js"></script>
+
+<link href="../css/styles.css" rel="stylesheet"></head>
+<body>
+
+<!--[if IE]>
+<div class="p-3 bg-light">
+  <div class="container">
+    <p class="mb-0 browserupgrade">
+      You are using an <strong>outdated</strong> browser.
+      Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </p>
+  </div>
+</div>
+<![endif]-->
+
+
+<div class="d-flex flex-column h-100">
+  
+  <header class="header header-back fixed-top">
+    <div class="container">
+      <a href="#" class="btn btn-icon" title="이전으로" onclick="history.back();">
+        <span class="icon icon-left"></span>
+      </a>
+      <h1>지역인증</h1>
+    </div>
+  </header>
+
+  <main class="d-flex flex-column h-100">
+
+    <div class="container">
+      <a href="#;" class="text-center text-primary text-join" data-toggle="modal" data-target="#info">
+        왜 주소 인증이 필요한가요?
+      </a>
+      <div class="sample-image svg-spinner" style="background-image: url('https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg');">
+        <span>이미지</span>
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary btn-block" onclick="location.href='./areaConfirmHome.html'">
+          거주지 인증 : 택배/고지서 사진 필요
+        </button>
+        <button type="button" class="btn btn-primary btn-block" onclick="location.href='./areaConfirmOffice.html'">
+          직장 인증 : 명함사진 필요
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 하단 고정 버튼 -->
+  <footer class="footer fixed-bottom">
+    <div class="container py-2">
+      <button type="button" class="btn btn-outline-primary btn-block" onclick="location.href='./service/home.html'">나중에 하기</button>
+    </div>
+  </footer>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="info" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="infoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="modal-title info" id="infoLabel">왜 주소 인증이 필요한가요?</h5>
+        <p class="mt-4">
+          요앞은 진짜 동네 이웃들끼리 소통하는 커뮤니티를 지향합니다. 동력은 봄날의 아름답고 꽃이 끓는다. 보배를 곳으로 산야에 보이는 고행을 것이다. 가슴이 속에서 맺어, 과실이 찬미를 불어 설레는 피가 청춘의 것이다.
+          트고, 뜨고, 사라지지 새 꾸며 싸인 황금시대를 힘있다. 속에서 하는 곧 듣기만 불러 있으랴? 찬미를 풀이 주는 있을 피어나기 창공에 것이다.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // 이미지 로딩 후 spinner 클래스 제거
+  // Loading progress for Image items
+  $('.sample-image').waitForImages({
+    hasImgProperties: ['backgroundImage'],
+    finished: function() {
+      $('.sample-image').removeClass('svg-spinner');
+    },
+    each: function() {
+      $('.sample-image').removeClass('svg-spinner').children('span').hide();
+    },
+    waitForAll: true
+  })
+</script>
+<script src="main.js"></script></body>
+</html>

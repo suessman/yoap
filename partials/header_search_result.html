@@ -1,0 +1,58 @@
+<head><link href=".././css/styles.css" rel="stylesheet"></head>  <header class="fixed-top header-main">
+    <!-- <section class="container-fluid top-nav end"> -->
+    <section class="container-fluid top-nav between">
+      <a href="#;" class="btn btn-icon" title="이전으로" onclick="history.back();">
+        <span class="icon icon-left icon-ml back"></span>
+      </a>
+      <h1>
+        <!-- 키워드 검색일 경우 키워드를 노출합니다. -->
+        <span class="text-keyword">'키워드'</span> 
+        <!-- 기본 타이틀 -->
+        <span>검색결과</span>
+      </h1>
+    </section>
+    <!-- 카테고리 선택 -->
+    <section class="container-fluid top-category">
+      <!-- <label class="badge-checkbox" for="checkAll">
+        <input type="checkbox" value="1" id="checkAll" hidden>
+        <span>전체</span>
+      </label> -->
+      <div class="selected">반려동물</div>
+      <label class="badge-checkbox" for="item-2">
+        <input type="checkbox" value="2" id="item-2" hidden>
+        <span>요리/제조</span>
+      </label>
+      <label class="badge-checkbox" for="item-3">
+        <input type="checkbox" value="3" id="item-3" hidden>
+        <span>반려동물</span>
+      </label>
+      <label class="badge-checkbox" for="item-4">
+        <input type="checkbox" value="4" id="item-4" hidden>
+        <span>가족/결혼</span>
+      </label>
+      <label class="badge-checkbox" for="item-5">
+        <input type="checkbox" value="5" id="item-5" hidden>
+        <span>자유주제</span>
+      </label>
+      <label class="badge-checkbox" for="item-6">
+        <input type="checkbox" value="6" id="item-6" hidden>
+        <span>정보</span>
+      </label>
+    </section>
+  </header>
+
+  <script>
+    $(function() {
+      // 전체 체크시 나머지 체크 해제
+      $(".badge-checkbox #checkAll").on('click', function(){
+        if($(this).prop('checked', true)) {
+          console.log($(this).parent())
+          $(this).parent().siblings('label').children('input').prop('checked', false);
+        }
+      });
+      // 나머지 선택시 전체 체크 해제
+      $(".badge-checkbox :not(#checkAll)").on('click', function(){
+        $("#checkAll").prop('checked', false);
+      });
+    })
+  </script><script src="../main.js"></script>

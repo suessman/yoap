@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>YOAP - 관심상점</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+<!-- favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="/images/favicon.ico">
+
+<script src="/js/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+
+<!-- CSS Bootstrap 4.6.0 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/css/flatpickr.min.css">
+<link rel="stylesheet" href="/css/xpull.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css"> -->
+
+<!-- JS -->
+<!-- Bootstrap 4.6.0 -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- owl carousel -->
+<script src="/js/owl.carousel.min.js"></script>
+<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<!-- Sweetalert -->
+<script src="/js/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- Copy to clipboard -->
+<script src="/js/clipboard.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"  crossorigin="anonymous"></script> -->
+
+<script src="/js/jquery.waitforimages.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/flatpickr.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/ko.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/l10n/ko.min.js"  crossorigin="anonymous"></script> -->
+
+<!-- xpull 끌어서 새로고침  https://github.com/sjovanovic/xpull -->
+<script src="/js/xpull.js"></script>
+
+<link href=".././css/styles.css" rel="stylesheet"></head>
+<body>
+    <div class="d-flex h-100 flex-column">
+        <header class="header header-depth1 fixed-top">
+            <section class="container-fluid flex-betweenb top-nav between">
+                <a href="#;" class="btn btn-icon" title="이전으로" onclick="history.back();">
+                <span class="icon icon-left"></span>
+                </a>
+                <h1>관심상점</h1>               
+            </section>
+        </header>
+      
+        <main class="d-flex h-100 flex-column justify-content-between ui ui-footer">        
+          <form>
+          <div class="container mt-2">
+            <div class="mypage-body"> 
+              <ul class="store">
+                <li class="thumb-body">   
+                  <a href="/service/shopDetail.html">
+                    <div class="thumb" style="background-image: url('https://cdn.pixabay.com/photo/2015/05/31/13/59/salad-791891_960_720.jpg');"></div>
+                    <p class="title">총각네 야채가게</p>
+                    <p class="address">서초동 서초대로13</p>  
+                  </a>         
+                </li> 
+                <li class="thumb-body">   
+                  <a href="/service/shopDetail.html">
+                    <div class="thumb" style="background-image: url('https://cdn.pixabay.com/photo/2015/05/31/13/59/salad-791891_960_720.jpg');"></div>
+                    <p class="title">총각네 야채가게</p>
+                    <p class="address">서초동 서초대로13</p>  
+                  </a>         
+                </li> 
+                <li class="thumb-body">   
+                  <a href="/service/shopDetail.html">
+                    <div class="thumb" style="background-image: url('https://cdn.pixabay.com/photo/2015/05/31/13/59/salad-791891_960_720.jpg');"></div>
+                    <p class="title">총각네 야채가게</p>
+                    <p class="address">서초동 서초대로13</p>  
+                  </a>         
+                </li> 
+                <li class="thumb-body">   
+                  <a href="/service/shopDetail.html">
+                    <div class="thumb" style="background-image: url('https://cdn.pixabay.com/photo/2015/05/31/13/59/salad-791891_960_720.jpg');"></div>
+                    <p class="title">총각네 야채가게</p>
+                    <p class="address">서초동 서초대로13</p>  
+                  </a>         
+                </li> 
+                <li class="thumb-body">   
+                  <a href="/service/shopDetail.html">
+                    <div class="thumb" style="background-image: url('https://cdn.pixabay.com/photo/2015/05/31/13/59/salad-791891_960_720.jpg');"></div>
+                    <p class="title">총각네 야채가게</p>
+                    <p class="address">서초동 서초대로13</p>  
+                  </a>         
+                </li>      
+              </ul>
+              
+            </div>
+          </div>         
+          </form>
+        </main>     
+        <!-- footer -->
+        <!-- Main Nav -->
+<!-- <footer class="footer footer-nav fixed-bottom">
+  <div class="container h-100">
+    <ul class="d-flex h-100 justify-content-between align-items-center">
+      <li>
+        <a href="/service/home.html" class="icon icon-home active">
+          <span class="sr-only">홈</span>
+        </a>
+      </li>
+      <li>
+        <a href="/event/event.html" class="icon icon-bag">
+          <span class="sr-only">이벤트</span>
+        </a>
+      </li>
+      <li>
+        <a href="/story/storyHome.html" class="icon icon-yoap">
+          <span class="sr-only">우리동네</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/chat/chatHome.html" class="icon icon-chat2">
+          <span class="sr-only">채팅</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/mypage/mypageHome.html" class="icon icon-user">
+          <span class="sr-only">마이페이지</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer> -->
+
+<script>
+  $(function () {
+
+    // 메뉴 on -- 비동
+    $(".footer-nav .icon").on('click', function () {
+      $(".footer-nav .icon").removeClass('active');
+      $(this).addClass('active');
+    })
+  })
+
+</script>   
+      </div>      
+     
+<script src="../main.js"></script></body>
+</html>

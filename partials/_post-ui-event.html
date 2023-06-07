@@ -1,0 +1,48 @@
+<head><link href=".././css/styles.css" rel="stylesheet"></head><nav class="post-ui">
+  <div class="wrap">
+    <a href="#" class="fbtn btn-write" data-toggle="modal" data-target="#blockui">
+      <i class="icon icon-plus"></i>
+      <span class="sr-only">글쓰기</span>
+    </a>
+    <div class="sub-btns">
+      <ul>
+        <li>
+          <a href="/event/addEvent.html" class="fbtn fbtn-text">
+            <i class="icon icon-event"></i>
+            <span>요앞이벤트</span>
+          </a>
+        </li>
+        <li>
+          <a href="/event/addProduct.html" class="fbtn fbtn-text">
+            <i class="icon icon-edit"></i>
+            <span>요앞상품</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- backdrop -->
+<div class="modal-overlay" id="blockui" aria-hidden="true"></div>
+
+<script>
+  $(function() {
+    // ui action
+    $(".btn-write").on('click', function(e) {
+      e.preventDefault();
+      var hasActive = $(this).hasClass('active');
+      if(hasActive) {
+        $(this).removeClass('active');
+      } else {
+        $(this).addClass('active');
+      }
+    });
+
+    // on click backdrop 
+    $("#blockui").on('click', function () {
+      // $(this).modal({ backdrop: 'static', keyboard: false });
+    });
+
+  })
+</script><script src="../main.js"></script>

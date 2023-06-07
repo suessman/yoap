@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <title>YOAP - 출석체크</title>
+    <meta name="description" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+<!-- favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="/images/favicon.ico">
+
+<script src="/js/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+
+<!-- CSS Bootstrap 4.6.0 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/css/flatpickr.min.css">
+<link rel="stylesheet" href="/css/xpull.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css"> -->
+
+<!-- JS -->
+<!-- Bootstrap 4.6.0 -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- owl carousel -->
+<script src="/js/owl.carousel.min.js"></script>
+<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<!-- Sweetalert -->
+<script src="/js/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- Copy to clipboard -->
+<script src="/js/clipboard.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"  crossorigin="anonymous"></script> -->
+
+<script src="/js/jquery.waitforimages.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/flatpickr.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/ko.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/l10n/ko.min.js"  crossorigin="anonymous"></script> -->
+
+<!-- xpull 끌어서 새로고침  https://github.com/sjovanovic/xpull -->
+<script src="/js/xpull.js"></script>
+
+<link href=".././css/styles.css" rel="stylesheet"></head>
+
+<body>
+
+    <!--[if IE]>
+<div class="p-3 bg-light">
+  <div class="container">
+    <p class="mb-0 browserupgrade">
+      You are using an <strong>outdated</strong> browser.
+      Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </p>
+  </div>
+</div>
+<![endif]-->
+
+
+    <div class="d-flex flex-column">
+        <header class="header header-depth1 fixed-top">
+            <div class="container">
+                <a href="#;" class="btn btn-icon" title="이전으로" onclick="history.back();">
+                    <span class="icon icon-left icon-ml"></span>
+                </a>
+                <h1>출석체크</h1>
+            </div>
+        </header>
+
+        <main class="d-flex flex-column ui">
+            <section class="coupon-detail">
+                <div class="container mt-3">
+                    <h4>테스트 상점</h4>
+                </div>
+                <div class="mt-5">
+                    <div class="position-relative">
+                        <img src="/images/grape-top.png" class="grape-top" alt="포도">
+                    </div>
+
+                    <div class="coupon-body m-auto">
+                        <span class="coupon-list active">
+                            <p>1</p>
+                        </span>
+                        <span class="coupon-list active">
+                            <p>2</p>
+
+                        </span>
+                        <span class="coupon-list active">
+                            <p>3</p>
+                        </span>
+                        <span class="coupon-list active">
+                            <p>미니쿠키증정</p>
+                        </span>
+                        <span class="coupon-list active">
+                            <p>5</p>
+                        </span>
+                        <span class="coupon-list">
+                            <p>6</p>
+                        </span>
+                        <span class="coupon-list">
+                            <p>음료1+1</p>
+
+                        </span>
+                        <span class="coupon-list">
+                            <p>8</p>
+                        </span>
+                        <span class="coupon-list">
+                            <p>9</p>
+
+                        </span>
+                        <span class="coupon-list">
+                            <p>10</p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="container  d-flex align-items-centerb justify-content-end">
+                    <span class="text-goods">완성한 포도 : <img class="grape_icon" src="/images/grape_icon.png" alt="포도"> X 10</span>
+                </div>
+                <div class="mt-4">
+                    <button class="btn btn-block btn-outline-primary use-coupon" data-toggle="modal" data-target="#addCoupon">쿠폰 발급</button>
+                </div>
+                <div class="mt-4 coupon-list-detail">
+                    <div class="list">
+                        <h5>미니쿠키 증정</h5>
+                        <p>서비스로 미니쿠키를 드려요.</p>
+                    </div>
+                    <div class="list">
+                        <h5>음료1+1 증정</h5>
+                        <p>서비스로 미니쿠키를 드려요.</p>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <div class="modal fade" id="addCoupon" tabindex="-1" aria-labelledby="addCouponLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-title info" id="addCouponLabel">쿠폰 선택</h5>
+                    <div class="text-center my-4">
+                        <ul>
+                            <li class="mt-2">
+                                <div class="custom-control custom-checkbox text-left primary">
+                                    <input type="checkbox" class="custom-control-input" id="coupon1" required="">
+                                    <label class="custom-control-label" for="coupon1">미니쿠키 쿠폰</label>
+                                </div>
+                            </li>
+                            <li class="mt-2">
+                                <div class="custom-control custom-checkbox text-left primary">
+                                    <input type="checkbox" class="custom-control-input" id="coupon2" required="">
+                                    <label class="custom-control-label" for="coupon2">미니쿠키 쿠폰</label>
+                                </div>
+                            </li>
+                            <li class="mt-2">
+                                <div class="custom-control custom-checkbox text-left primary">
+                                    <input type="checkbox" class="custom-control-input" id="coupon3" disabled required="">
+                                    <label class="custom-control-label" for="coupon3">미니쿠키 쿠폰</label>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary btn-lg btn-fix" data-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-fix">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="../main.js"></script></body>
+
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>YOAP - 나눔장터 검색결과</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+<!-- favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="../images/favicon.ico">
+
+<script src="/js/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+
+<!-- CSS Bootstrap 4.6.0 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/css/flatpickr.min.css">
+<link rel="stylesheet" href="/css/xpull.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css"> -->
+
+<!-- JS -->
+<!-- Bootstrap 4.6.0 -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- owl carousel -->
+<script src="/js/owl.carousel.min.js"></script>
+<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<!-- Sweetalert -->
+<script src="/js/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- Copy to clipboard -->
+<script src="/js/clipboard.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"  crossorigin="anonymous"></script> -->
+
+<script src="/js/jquery.waitforimages.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/flatpickr.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" crossorigin="anonymous"></script> -->
+
+<script src="/js/ko.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/l10n/ko.min.js"  crossorigin="anonymous"></script> -->
+
+<!-- xpull 끌어서 새로고침  https://github.com/sjovanovic/xpull -->
+<script src="/js/xpull.js"></script>
+
+<link href=".././css/styles.css" rel="stylesheet"></head>
+
+<body>
+
+<!--[if IE]>
+<div class="p-3 bg-light">
+  <div class="container">
+    <p class="mb-0 browserupgrade">
+      You are using an <strong>outdated</strong> browser.
+      Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </p>
+  </div>
+</div>
+<![endif]-->
+
+
+<div class="d-flex flex-column">
+  
+    <header class="fixed-top header-main">
+    <!-- <section class="container-fluid top-nav end"> -->
+    <section class="container-fluid top-nav between">
+      <a href="#;" class="btn btn-icon" title="이전으로" onclick="history.back();">
+        <span class="icon icon-left icon-ml back"></span>
+      </a>
+      <h1>
+        <!-- 키워드 검색일 경우 키워드를 노출합니다. -->
+        <span class="text-keyword">'키워드'</span> 
+        <!-- 기본 타이틀 -->
+        <span>검색결과</span>
+      </h1>
+    </section>
+    <!-- 카테고리 선택 -->
+    <section class="container-fluid top-category">
+      <!-- <label class="badge-checkbox" for="checkAll">
+        <input type="checkbox" value="1" id="checkAll" hidden>
+        <span>전체</span>
+      </label> -->
+      <div class="selected">반려동물</div>
+      <label class="badge-checkbox" for="item-2">
+        <input type="checkbox" value="2" id="item-2" hidden>
+        <span>요리/제조</span>
+      </label>
+      <label class="badge-checkbox" for="item-3">
+        <input type="checkbox" value="3" id="item-3" hidden>
+        <span>반려동물</span>
+      </label>
+      <label class="badge-checkbox" for="item-4">
+        <input type="checkbox" value="4" id="item-4" hidden>
+        <span>가족/결혼</span>
+      </label>
+      <label class="badge-checkbox" for="item-5">
+        <input type="checkbox" value="5" id="item-5" hidden>
+        <span>자유주제</span>
+      </label>
+      <label class="badge-checkbox" for="item-6">
+        <input type="checkbox" value="6" id="item-6" hidden>
+        <span>정보</span>
+      </label>
+    </section>
+  </header>
+
+  <script>
+    $(function() {
+      // 전체 체크시 나머지 체크 해제
+      $(".badge-checkbox #checkAll").on('click', function(){
+        if($(this).prop('checked', true)) {
+          console.log($(this).parent())
+          $(this).parent().siblings('label').children('input').prop('checked', false);
+        }
+      });
+      // 나머지 선택시 전체 체크 해제
+      $(".badge-checkbox :not(#checkAll)").on('click', function(){
+        $("#checkAll").prop('checked', false);
+      });
+    })
+  </script>
+
+  <main class="d-flex flex-column ui ui-feed">
+    <!-- 장터 목록 시작 -->
+    <section class="container mt-3">
+      <ul class="list-card market">
+        <!-- item -->
+        <li>
+          <div class="thumb" style="background-image: url('../images/demo_market.jpg');">
+            <div class="thumb-top">
+              <span class="strcut">서초동</span>
+              <div>
+                <i class="icon icon-sm icon-like color_white"></i>
+                <small>99</small>
+                <i class="icon icon-sm icon-chat color_white"></i>
+                <small>99</small>
+              </div>
+            </div>
+            <div class="thumb-bottom">
+              <span>3</span>
+              <button type="button" class="icon icon-bookmark icon-lg color_white">
+                <span class="sr-only">북마크</span>
+              </button>
+            </div>
+          </div>
+          <a href="/story/marketDetail.html">
+            <div class="market-body">
+              <p class="strcut strcut-twoline">명품 가방 팔아요 명품 가방 팔명품 가방 팔아아명품 가방 팔아명품 가방 팔아명품 가방 팔아</p>
+              <div class="price">
+                <span>450,000원</span>
+              </div>
+              <div class="info">
+                <span>2020-00-00 | 00:00</span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <!-- item -->
+        <li>
+          <div class="thumb" style="background-image: url('../images/demo_ad.png');">
+            <div class="thumb-top">
+              <span class="strcut">석촌동</span>
+              <div>
+                <i class="icon icon-sm icon-like color_white"></i>
+                <small>99</small>
+                <i class="icon icon-sm icon-chat color_white"></i>
+                <small>99</small>
+              </div>
+            </div>
+            <div class="thumb-bottom">
+              <span>3</span>
+              <button type="button" class="icon icon-bookmark icon-lg color_white">
+                <span class="sr-only">북마크</span>
+              </button>
+            </div>
+          </div>
+          <a href="/story/marketAdDetail.html">
+            <div class="market-body">
+              <p class="strcut strcut-twoline">휴메인크휘트니스 석촌점</p>
+              <div class="price">
+                <span class="ad-info">지역광고</span>
+              </div>
+              <div class="info">
+                <span>2020-00-00 | 00:00</span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <!-- item -->
+        <li class="soldout">
+          <div class="thumb" style="background-image: url('https://img2.yna.co.kr/etc/inner/KR/2020/11/09/AKR20201109052300017_01_i_P2.jpg');">
+            <div class="thumb-top">
+              <span class="strcut">서초동</span>
+              <div>
+                <i class="icon icon-sm icon-like color_white"></i>
+                <small>99</small>
+                <i class="icon icon-sm icon-chat color_white"></i>
+                <small>99</small>
+              </div>
+            </div>
+            <div class="thumb-bottom">
+              <span>3</span>
+              <button type="button" class="icon icon-bookmark icon-lg color_white">
+                <span class="sr-only">북마크</span>
+              </button>
+            </div>
+          </div>
+          <a href="/story/marketDetail.html">
+            <div class="market-body">
+              <p class="strcut strcut-twoline">명품 스웨터 정리합니다.</p>
+              <div class="price">
+                <span>50,000원</span>
+              </div>
+              <div class="info">
+                <span>2020-00-00 | 00:00</span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <!-- item -->
+        <li>
+          <div class="thumb" style="background-image: url('https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/786/9279264e4b52cb55033243f3794a2a04.jpeg');">
+            <div class="thumb-top">
+              <span class="strcut">서초동</span>
+              <div>
+                <i class="icon icon-sm icon-like color_white"></i>
+                <small>99</small>
+                <i class="icon icon-sm icon-chat color_white"></i>
+                <small>99</small>
+              </div>
+            </div>
+            <div class="thumb-bottom">
+              <span>3</span>
+              <button type="button" class="icon icon-bookmark icon-lg color_white">
+                <span class="sr-only">북마크</span>
+              </button>
+            </div>
+          </div>
+          <a href="/story/marketDetail.html">
+            <div class="market-body">
+              <p class="strcut strcut-twoline">뉴발이 그대를 기다린다</p>
+              <div class="price">
+                <span>85,000원</span>
+              </div>
+              <div class="info">
+                <span>2020-00-00 | 00:00</span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <!-- item -->
+        <li>
+          <div class="thumb" style="background-image: url('https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg');">
+            <div class="thumb-top">
+              <span class="strcut">서초동</span>
+              <div>
+                <i class="icon icon-sm icon-like color_white"></i>
+                <small>99</small>
+                <i class="icon icon-sm icon-chat color_white"></i>
+                <small>99</small>
+              </div>
+            </div>
+            <div class="thumb-bottom">
+              <span>3</span>
+              <button type="button" class="icon icon-bookmark icon-lg color_white">
+                <span class="sr-only">북마크</span>
+              </button>
+            </div>
+          </div>
+          <a href="/story/marketDetail.html">
+            <div class="market-body">
+              <p class="strcut strcut-twoline">명품 스웨터 정리합니다.</p>
+              <div class="price">
+                <span>50,000원</span>
+              </div>
+              <div class="info">
+                <span>2020-00-00 | 00:00</span>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <!-- Main Nav -->
+<!-- <footer class="footer footer-nav fixed-bottom">
+  <div class="container h-100">
+    <ul class="d-flex h-100 justify-content-between align-items-center">
+      <li>
+        <a href="/service/home.html" class="icon icon-home active">
+          <span class="sr-only">홈</span>
+        </a>
+      </li>
+      <li>
+        <a href="/event/event.html" class="icon icon-bag">
+          <span class="sr-only">이벤트</span>
+        </a>
+      </li>
+      <li>
+        <a href="/story/storyHome.html" class="icon icon-yoap">
+          <span class="sr-only">우리동네</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/chat/chatHome.html" class="icon icon-chat2">
+          <span class="sr-only">채팅</span>
+        </a>
+      </li>
+      <li class="readme">
+        <a href="/mypage/mypageHome.html" class="icon icon-user">
+          <span class="sr-only">마이페이지</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer> -->
+
+<script>
+  $(function () {
+
+    // 메뉴 on -- 비동
+    $(".footer-nav .icon").on('click', function () {
+      $(".footer-nav .icon").removeClass('active');
+      $(this).addClass('active');
+    })
+  })
+
+</script>
+
+  <!-- floating post ui -->
+
+</div>
+
+<script>
+  $(function() {
+    // Slides
+    $(".owl-carousel").owlCarousel({
+        items: 1,
+        dots : true,
+        // autoWidth:true,
+        // autoHeight:false
+    });
+
+    // like, bookmark event action
+    $(".icon-bookmark").on('click', function(){
+      var status = $(this).hasClass('icon-bookmark-on on');
+      if(status) {
+        $(this).removeClass('icon-bookmark-on on');
+      } else {
+        $(this).addClass('icon-bookmark-on on');
+      }
+    });
+    $(".icon-like").on('click', function(){
+      var status = $(this).hasClass('icon-like-on heart-on');
+      if(status) {
+        $(this).removeClass('icon-like-on heart-on');
+      } else {
+        $(this).addClass('icon-like-on heart-on');
+      }
+    });
+
+  })
+</script>
+<script src="../main.js"></script></body>
+</html>

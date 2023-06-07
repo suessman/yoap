@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>YOAP - 상점소식</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+<!-- favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="../images/favicon.ico">
+
+<script src="../js/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+
+<!-- CSS Bootstrap 4.6.0 -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../css/owl.theme.default.min.css">
+<link rel="stylesheet" href="../css/flatpickr.min.css">
+<link rel="stylesheet" href="../css/xpull.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist../css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css"> -->
+
+<!-- JS -->
+<!-- Bootstrap 4.6.0 -->
+<script src="../js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist../js/bootstrap.bundle.min.js"></script> -->
+<!-- owl carousel -->
+<script src="../js/owl.carousel.min.js"></script>
+<!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<!-- Sweetalert -->
+<script src="../js/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- Copy to clipboard -->
+<script src="../js/clipboard.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"  crossorigin="anonymous"></script> -->
+
+<script src="../js/jquery.waitforimages.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js" crossorigin="anonymous"></script> -->
+
+<script src="../js/flatpickr.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" crossorigin="anonymous"></script> -->
+
+<script src="../js/ko.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/l10n/ko.min.js"  crossorigin="anonymous"></script> -->
+
+<!-- xpull 끌어서 새로고침  https://github.com/sjovanovic/xpull -->
+<script src="../js/xpull.js"></script>
+
+<link href="../css/styles.css" rel="stylesheet"></head>
+
+<body>
+
+<!--[if IE]>
+<div class="p-3 bg-light">
+  <div class="container">
+    <p class="mb-0 browserupgrade">
+      You are using an <strong>outdated</strong> browser.
+      Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </p>
+  </div>
+</div>
+<![endif]-->
+
+
+<div class="d-flex flex-column">
+
+    <header class="fixed-top header-main">
+    <section class="container-fluid top-nav between">
+      <a href="#;" class="btn btn-icon" title="이전으로" onclick="history.back();">
+        <span class="icon icon-left icon-ml back"></span>
+      </a>
+      <h1>상점소식</h1>
+      <div class="btns-wrap">
+        <a href="#;" title="공유하기" data-toggle="modal" data-target="#share">
+          <span class="icon icon-share icon-ml"></span>
+        </a>
+        <button type="button" class="icon icon-dots icon-ml">
+          <span class="sr-only">메뉴</span>
+        </button>
+        <nav class="pop-menu">
+          <ul>
+            <li>
+              <a href="#;">새로고침</a>
+            </li>
+            <!-- 사용자일 경우 신고하기 활성화-->
+            <li>
+              <a href="/service/addReport.html">신고하기</a>
+            </li>
+            <!-- 작성자일 경우 끌어올리기 활성화 -->
+            <li>
+              <a href="#;">끌어 올리기</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+    <section class="breadcrumb">
+      <span>식료품</span>
+      <span>과일</span>
+    </section>
+  </header>
+
+  <!-- Modal 공유 -->
+    <!-- Modal -->
+  <div class="modal fade" id="share" data-keyboard="false" tabindex="-1" aria-labelledby="shareLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5 class="modal-title info mb-3">공유하기</h5>
+          <div class="text-center mt-3">
+            <div class="form-gruop my-4 col-14 offset-1">
+              <input type="text" id="shareUrl" class="form-control" value="http://aaddfsdfsdfaaaa" onclick="select()"
+                readonly>
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-fix btn-lg mr-1" data-dismiss="modal">취소</button>
+            <button type="button" class="btn btn-primary btn-fix btn-lg share-copy"
+              data-clipboard-target="#shareUrl">링크복사</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // 공유 주소 복사
+    var clipboard = new ClipboardJS('.share-copy');
+    clipboard.on('success', function (e) {
+      alert('공유 주소가 복사됐습니다');
+      $('#share').modal('hide');
+    });
+  </script>
+
+  <script>
+    $(function(){
+      // dot menu action
+      $(".icon-dots").on('click', function(){
+        var status = $('.pop-menu').hasClass('active');
+        if(status) {
+          $('.pop-menu').removeClass('active');
+        } else {
+          $('.pop-menu').addClass('active');
+        }
+      })
+      $('main').on('click', function(){
+        $('.pop-menu').removeClass('active');
+      });
+    })
+  </script>
+
+  
+
+  <main class="d-flex flex-column ui ui-feed">
+      <!-- item -->
+      <article class="item-feed">
+        <div class="item-head">
+          <i class="userthumb userthumb-md" style="background-image: url('../images/user_photo.png');"></i>
+          <!-- 인증 상점일 경우, icon-members class 적용 -->
+          <h2 class="icon-members">요앞상회 서초동</h2>
+          <div class="info">
+            <span>00분 전</span>
+            <span>
+              <i class="icon icon-pin icon-sm color_coolgrey"></i>
+              <span>2km</span>
+            </span>
+          </div>
+        </div>
+        
+        <div class="item-body">
+          <!-- 사진 있는 아이템 -->
+          <div class="owl-carousel owl-theme">
+            <div class="item">
+              <img src="https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg" alt="">
+            </div>
+            <div class="item">
+              <img src="../images/demo_feed.jpg" alt="">
+            </div>
+            <div class="item">
+              <img src="https://www.slrlounge.com/wp-content/uploads/2013/05/suburban-lake-vertical-panorama-bw-900.jpg" alt="">
+            </div>
+            <div class="item">
+              <img src="https://i.pinimg.com/originals/0b/ac/f6/0bacf62a4bd456d02d02c6b8a5c98f67.jpg" alt="">
+            </div>
+          </div>
+
+          <!-- contents -->
+          <div class="container-fluid content mt-2">
+            <p class="mb-2">
+              잠깐 들려서 보고가세요 행사중입니다 :)
+            </p>
+            <div class="tags">
+              <a href="#;">#요앞상회</a>
+              <a href="#;">#언제든</a>
+              <a href="#;">#환영</a>
+              <a href="#;">#이벤트</a>
+            </div>
+            <div class="post-date mt-1">
+              <span>2021-00-00</span>
+            </div>
+          </div>
+
+          <div class="container-fluid btns mt-2">
+            <div>
+              <button type="button" class="icon icon-like icon-lg">
+                <span class="sr-only">좋아요</span>
+              </button>
+              <!-- <button type="button" class="icon icon-chat icon-lg">
+                <span class="sr-only">댓글</span>
+              </button> -->
+              <button type="button" class="icon icon-chat2 icon-lg" onclick="location.href='/chat/chatRoom.html'">
+                <span class="sr-only">채팅</span>
+              </button>
+            </div>
+            <div>
+              <button type="button" class="icon icon-bookmark icon-lg">
+                <span class="sr-only">북마크</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="container-fluid nums mt-1">
+            <span>좋아요 1,999</span>
+            <span>댓글 999</span>
+          </div>
+        </div>
+        <!--// item-body  -->
+
+        <!-- item Comments wrapper -->
+        <div class="item-comment mt-2">
+          <!-- item -->
+          <div class="item-flick">
+            <article class="item">
+              <!-- user thumb -->
+              <i class="userthumb userthumb-md" style="background-image: url('../images/user_photo.png');"></i>
+              <div class="item-body">
+                <div class="ml-2">
+                  <h2>주민1 <span class="area">서초동</span></h2>
+                  <div class="comment">
+                    <span>위치가 어딘가요? 위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?</span>
+                    <p class="comment-date">2020-00-00 | 00:00</p>
+                  </div>
+                </div>
+                <div class="comment-like">
+                  <button class="icon icon-sm icon-likesm">
+                    <span class="sr-only">좋아요</span>
+                  </button>
+                  <span class="like-num">999</span>
+                </div>
+              </div>
+            </article>
+            <!-- flick ui button -->
+            <div class="flick-ui">
+              <a href="#;" class="icon icon-reply">
+                <span class="sr-only">답글달기</span>
+              </a>
+              <a href="#;" class="icon icon-trash">
+                <span class="sr-only">삭제</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 댓글 item -->
+          <div class="item-flick">
+            <article class="item reply">
+              <!-- user thumb -->
+              <i class="userthumb userthumb-md" style="background-image: url('../images/user_photo.png');"></i>
+              <div class="item-body">
+                <div class="ml-2">
+                  <h2 class="icon-members">상점주인 <span class="area">서초동</span></h2>
+                  <div class="comment">
+                    <span>위치가 어딘가요? 위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?위치가 어딘가요?</span>
+                    <p class="comment-date">2020-00-00 | 00:00</p>
+                  </div>
+                </div>
+                <div class="comment-like">
+                  <button class="icon icon-sm icon-likesm">
+                    <span class="sr-only">좋아요</span>
+                  </button>
+                  <span class="like-num">999</span>
+                </div>
+              </div>
+            </article>
+            <!-- flick ui button -->
+            <div class="flick-ui">
+              <a href="#;" class="icon icon-reply">
+                <span class="sr-only">답글달기</span>
+              </a>
+              <a href="#;" class="icon icon-trash">
+                <span class="sr-only">삭제</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- item -->
+          <div class="item-flick">
+            <article class="item clearfix">
+              <!-- user thumb -->
+              <i class="userthumb userthumb-md" style="background-image: url('../images/user_photo.png');"></i>
+              <div class="item-body">
+                <div class="ml-2">
+                  <h2>주민1 <span class="area">서초동</span></h2>
+                  <div class="comment">
+                    <span>위치가 어딘가요?</span>
+                    <p class="comment-date">2020-00-00 | 00:00</p>
+                  </div>
+                </div>
+                <div class="comment-like text-center">
+                  <button class="icon icon-sm icon-likesm">
+                    <span class="sr-only">좋아요</span>
+                  </button>
+                  <span class="like-num">2</span>
+                </div>
+              </div>
+            </article>
+            <!-- flick ui button -->
+            <div class="flick-ui">
+              <a href="#;" class="icon icon-reply">
+                <span class="sr-only">답글달기</span>
+              </a>
+              <a href="#;" class="icon icon-trash">
+                <span class="sr-only">삭제</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        
+      </article>
+      <!--// item -->
+
+  </main>
+
+  <!-- 하단 고정 답글 입력 bar  -->
+  <!-- comment -->
+<!-- Reply target info -->
+<div class="container reply-to">
+  <span>xxxx님에게 답글 남기는 중</span>
+  <button type="button" class="icon icon-close icon-sm"></button>
+</div>
+<footer class="footer footer-comment fixed-bottom">
+  <div class="container-fluid h-100">
+    <label for="comment" class="sr-only">답글</label>
+    <textarea name="comment" id="comment" class="form-control" rows="1" placeholder="댓글 달기"></textarea>
+    <button type="button" class="btn btn-text">등록</button>
+  </div>
+</footer>
+
+
+</div>
+
+<!-- Modal -->
+
+
+<script>
+  $(function() {
+    // Slides
+    $(".owl-carousel").owlCarousel({
+        items: 1,
+        dots : true
+    });
+
+    // like, bookmark event action
+    $(".icon-bookmark").on('click', function(){
+      let status = $(this).hasClass('icon-bookmark-on on');
+      if(status) {
+        $(this).removeClass('icon-bookmark-on on');
+      } else {
+        $(this).addClass('icon-bookmark-on on');
+      }
+    });
+    $(".icon-like.icon-lg").on('click', function(){
+      let status = $(this).hasClass('icon-like-on heart-on');
+      if(status) {
+        $(this).removeClass('icon-like-on heart-on');
+      } else {
+        $(this).addClass('icon-like-on heart-on');
+      }
+    });
+    $(".icon-likesm").on('click', function(){
+      let status = $(this).hasClass('icon-likesm-on heart-on');
+      if(status) {
+        $(this).removeClass('icon-likesm-on heart-on');
+      } else {
+        $(this).addClass('icon-likesm-on heart-on');
+      }
+    });
+
+    // 댓글아이콘 클릭시 input focus
+    $(".icon-reply").on('click', function() {
+      $(".footer-comment .form-control").focus();
+    });
+
+    // Flick UI Reply & Delete
+    $(document).on('touchstart', '.item-flick', handleTouchStart)
+    $(document).on('touchend', '.item-flick', handleTouchEnd)
+    var xDown = null;
+    var yDown = null;
+
+    function getTouches(evt) {
+      return evt.touches ||             // browser API
+      evt.originalEvent.touches; // jQuery
+    }
+    function handleTouchStart(evt) {
+      const firstTouch = getTouches(evt)[0];
+      xDown = firstTouch.clientX;
+      yDown = firstTouch.clientY;
+    };
+    function handleTouchEnd(evt) {
+      if (!xDown || !yDown) {
+        return;
+      }
+      var xUp = evt.changedTouches[0].clientX;
+      var yUp = evt.changedTouches[0].clientY;
+      var xDiff = xDown - xUp;
+      var yDiff = yDown - yUp;
+      var target = $(evt.target).parents('.item-flick');
+      
+      if (Math.abs(yDiff) < 100 && Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0) {
+          /* left swipe */
+          console.log('Swiped left');
+          $('.item-flick').removeClass('show');
+          target.addClass('show');
+        } else {
+          /* right swipe */
+          console.log('Swiped right');
+          $('.item-flick').removeClass('show');
+        }
+      } else {
+        if (yDiff > 0) {
+          /* up swipe */
+        } else {
+          /* down swipe */
+        }
+      }
+      /* reset values */
+      xDown = null;
+      yDown = null;
+    };
+
+    // 삭제하기 액션
+      $('.icon-trash').on('click', function(){
+        swal({
+          title: "삭제",
+          text: "삭제하시겠습니까?",
+          // icon: "warning",
+          buttons: true,
+          dangerMode: true,
+          buttons: {
+            cancel: {
+              text: "취소",
+              value: null,
+              visible: true,
+              className: "btn btn-outline-primary btn-fix",
+              closeModal: true,
+            },
+            confirm: {
+              text: "삭제",
+              value: true,
+              visible: true,
+              className: "btn btn-primary btn-fix",
+              closeModal: true
+            }
+          }
+        })
+      });
+  })
+</script>
+<script src="../main.js"></script></body>
+</html>
